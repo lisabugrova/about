@@ -1,5 +1,7 @@
 # Elizaveta Bugrova
 
+**Language:** English · [Русская версия](ru/README.md)
+
 **QA Engineer | Manual Web Testing | Regression Testing | Release Verification**
 
 Tbilisi, Georgia · [Telegram](https://t.me/lizavetamirr) · [GitHub](https://github.com/lisabugrova)
