@@ -16,7 +16,7 @@
 | [Регрессионные проверки и отчётность по релизу](portfolio/regression-and-release.md) | Анализ влияния изменений, приоритизация регресса и шаблон итогового отчёта |
 | [Чек-лист передачи QA-обязанностей](portfolio/qa-handover-playbook.md) | План передачи знаний, критерии самостоятельности и фиксация передачи ответственности |
 
-**Дополнительные материалы:** [Обзор тест-дизайна](portfolio/test-design-workbook.md) · [Шаблон баг-репорта](portfolio/defect-report-template.md) · [Методологические источники](REFERENCES.md)
+**Дополнительные материалы:** [Спецификация тестовых данных](portfolio/test-data-catalog.md) · [Обзор тест-дизайна](portfolio/test-design-workbook.md) · [Шаблон баг-репорта](portfolio/defect-report-template.md) · [Методологические источники](REFERENCES.md)
 
 ## Профессиональные компетенции
 
