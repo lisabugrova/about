@@ -14,10 +14,6 @@ This test-design index connects product requirements with suitable techniques an
 | Upload and processing workflow | State Transition Testing | [Balance Validation: workflow and transitions](audiodoc-studio-balance-validation.md) |
 | Change impact and release checks | Risk-based test selection | [Regression Test Selection](regression-and-release.md) |
 
-## Test data
-
-Media files, available time **0 / 9 / 10 / 11 / 3600 s**, file counts **0 / 1 / 9 / 10 / 11** and size boundaries: [Test Data Specification](test-data-catalog.md).
-
 ## Test-design checklist
 
 - [ ] Identify the requirement, source and relevant business rule.
