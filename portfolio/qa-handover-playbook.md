@@ -1,27 +1,49 @@
-# QA handover playbook
+# QA Handover — Knowledge Transfer & Readiness Checklist
 
-**Purpose:** example of a repeatable handover structure. This is not a published copy of any employer's internal procedures.
+**Objective:** Transfer recurring QA work so another engineer can independently select checks, execute them, report defects and communicate remaining risks.
 
-## Scope of handover
-A new QA colleague should be able to explain the user journeys, select regression checks appropriate to a change, run them in the correct environment, file actionable defects, and communicate uncertainty and release risk.
+## Handover matrix
 
-## Knowledge-transfer sequence
-1. **Product orientation:** goals, key journeys, environments, stakeholders, known constraints.
-2. **Test inventory:** show test scenarios and coverage map; identify obsolete and missing cases.
-3. **Guided execution:** pair on a small feature change and compare expected versus observed behavior.
-4. **Defect reporting:** create a sample report with environment, reproduction steps, evidence, and impact.
-5. **Regression planning:** ask the trainee to propose a change-impact-based subset and explain omissions.
-6. **Independent dry run:** trainee performs a reviewable simulated release check; mentor checks coverage, clarity, and risks.
-7. **Ownership transition:** document remaining questions, owners, and escalation routes.
+| Topic | Materials to transfer | Independence check |
+| --- | --- | --- |
+| Product workflows | User journeys: select → validate → upload → process → retrieve result | Explain key workflows and failure paths without prompts |
+| Requirements | Balance and file-limit rules; questions requiring confirmation | Identify test basis and clarify ambiguous rules |
+| Test design | [File upload](audiodoc-studio-file-upload.md), [balance validation](audiodoc-studio-balance-validation.md) | Adapt existing test cases to a changed requirement |
+| Test execution | Test environment, test data, evidence requirements, [execution summary](test-execution-report.md) | Complete a small test run and record results |
+| Defect reporting | [Defect report template](defect-report-template.md) | Produce a reproducible report with evidence |
+| Regression | [Risk-based regression selection](regression-and-release.md) | Justify which scenarios are required for a given change |
+| Release communication | Scope, passed/failed/blocked, open issues, residual risk | Prepare a reviewable release test summary |
 
-## Evidence of readiness
-- Can identify critical journeys and relevant risks without a checklist prompt.
-- Produces reproducible, appropriately scoped test cases and defect reports.
-- Distinguishes tested / failed / blocked / not tested.
-- Explains prioritization and residual risk.
-- Knows when to ask for clarification or escalate.
+## Transfer sequence
 
-## Privacy and safety
-Keep production credentials, customer data, internal URLs, confidential screenshots, and unreleased requirements out of public handover examples.
+1. **Product walkthrough:** map critical journeys and stakeholders.
+2. **Requirements review:** distinguish documented rules from open questions.
+3. **Guided test run:** execute a balance-validation case together.
+4. **Independent test design:** prepare cases for a small change and review the coverage.
+5. **Defect-report exercise:** write reproduction steps and expected/actual results.
+6. **Regression selection:** select checks according to impact and risk.
+7. **Readiness review:** ask the trainee to run the checks, report status and explain remaining risk.
 
-[← Portfolio home](../README.md)
+## Readiness checklist
+
+- [ ] Can set up a test environment and use safe test data.
+- [ ] Can explain the upload and balance-validation workflow.
+- [ ] Can select and adapt EP, BVA, decision-table and state-transition checks.
+- [ ] Can reproduce a failure and write an actionable defect report.
+- [ ] Can distinguish **passed, failed, blocked and not run**.
+- [ ] Can select an appropriate regression subset for a change.
+- [ ] Can prepare a release test summary and escalate unresolved risks.
+- [ ] Knows ownership, escalation contacts and documentation locations.
+
+## Handover sign-off
+
+| Field | Entry |
+| --- | --- |
+| Engineer / trainee | |
+| Mentor | |
+| Scope transferred | |
+| Evidence reviewed | |
+| Remaining questions | |
+| Independent ownership date | |
+
+[← Portfolio](../README.md)
