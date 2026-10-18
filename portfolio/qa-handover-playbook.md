@@ -1,38 +1,39 @@
-# QA Handover — Knowledge Transfer & Readiness Checklist
+# QA Process Handover — End-to-End Ownership Transfer
 
-**Objective:** Transfer recurring QA work so another engineer can independently select checks, execute them, report defects and communicate remaining risks.
+## Objective
 
-## Handover matrix
+Ensure continuity of the QA process as responsibilities move to another engineer, preserving product knowledge, testing practices, visibility into quality, and established ways of working with the team.
 
-| Topic | Materials to transfer | Independence check |
-| --- | --- | --- |
-| Product workflows | User journeys: select → validate → upload → process → retrieve result | Explain key workflows and failure paths without prompts |
-| Requirements | Balance and file-limit rules; questions requiring confirmation | Identify test basis and clarify ambiguous rules |
-| Test design | [File upload](audiodoc-studio-file-upload.md), [balance validation](audiodoc-studio-balance-validation.md) | Adapt existing test cases to a changed requirement |
-| Test execution | Test environment, test data, evidence requirements, [execution summary](test-execution-report.md) | Complete a small test run and record results |
-| Defect reporting | [Defect report template](defect-report-template.md) | Produce a reproducible report with evidence |
-| Regression | [Risk-based regression selection](regression-and-release.md) | Justify which scenarios are required for a given change |
-| Release communication | Scope, passed/failed/blocked, open issues, residual risk | Prepare a reviewable release test summary |
+## Scope of Responsibility Transfer
 
-## Transfer sequence
+### Test Cycle Management
 
-1. **Product walkthrough:** map critical journeys and stakeholders.
-2. **Requirements review:** distinguish documented rules from open questions.
-3. **Guided test run:** execute a balance-validation case together.
-4. **Independent test design:** prepare cases for a small change and review the coverage.
-5. **Defect-report exercise:** write reproduction steps and expected/actual results.
-6. **Regression selection:** select checks according to impact and risk.
-7. **Readiness review:** ask the trainee to run the checks, report status and explain remaining risk.
+Transfer the approach to testing product changes: analyzing requirements and affected functionality, defining test scope, selecting scenarios based on risk, carrying out functional and regression testing, retesting fixes, and performing final verification ahead of release.
 
-## Readiness checklist
+### Product Context and Test Documentation
 
-- [ ] Can set up a test environment and use safe test data.
-- [ ] Can explain the upload and balance-validation workflow.
-- [ ] Can select and adapt EP, BVA, decision-table and state-transition checks.
-- [ ] Can reproduce a failure and write an actionable defect report.
-- [ ] Can distinguish **passed, failed, blocked and not run**.
-- [ ] Can select an appropriate regression subset for a change.
-- [ ] Can prepare a release test summary and escalate unresolved risks.
-- [ ] Knows ownership, escalation contacts and documentation locations.
+Transfer knowledge of critical user journeys, dependencies between product features, test environments, previously identified defects, and higher-risk areas.
+
+Transfer existing test cases and checklists, approaches to regression-suite selection, and practices for keeping test documentation current.
+
+### Defect Management and Team Collaboration
+
+Transfer the workflow for documenting, discussing priorities with the team, tracking, and retesting defects. Explain how to collaborate with developers and other stakeholders to clarify requirements, review changes, resolve blockers, and communicate testing outcomes.
+
+### QA Reporting and Release Readiness
+
+Transfer the approach to monitoring testing progress, recording results, and reporting quality status ahead of a release.
+
+Particular attention is given to identifying untested areas, outstanding defects, and residual risks that stakeholders should consider when deciding whether to release a change.
+
+## Handover Approach
+
+The transition progresses from product and QA-process orientation to shared work on active tasks, then independent test execution with results reviewed, followed by gradual transfer of day-to-day QA ownership.
+
+## Completion Criteria
+
+The handover is complete when the incoming QA engineer can independently support the full test cycle for a change: define an appropriate test scope, organize execution, document outcomes, follow defects through resolution, assess residual risks, and provide the team with a reasoned view of readiness for release within their scope.
+
+The key measure of success is the ability to sustain the existing QA process without continuous involvement from the outgoing engineer.
 
 [← Portfolio](../README.md)
