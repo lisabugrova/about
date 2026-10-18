@@ -21,11 +21,11 @@
 | --- | --- | --- | --- |
 | BAL-D01 | **0 seconds** | **10 seconds** | Insufficient balance |
 | BAL-D02 | **1 hour** (3600 s) | **26 min 16 s** (1576 s) | Sufficient balance; successful journey |
-| BAL-D03 | **9 seconds** | **10 seconds** | One second short; planned boundary check |
-| BAL-D04 | **10 seconds** | **10 seconds** | Exactly equal; planned boundary check |
-| BAL-D05 | **11 seconds** | **10 seconds** | One second above; planned boundary check |
+| BAL-D03 | **9 seconds** | **10 seconds** | One second below video duration |
+| BAL-D04 | **10 seconds** | **10 seconds** | Balance equals video duration |
+| BAL-D05 | **11 seconds** | **10 seconds** | One second above video duration |
 
-**File fixtures:** `sample_video_10s.mp4` (10 s) for BAL-D01 and BAL-D03–05; `sample_video_26m16s.mp4` (26 min 16 s) for BAL-D02. These are preparation names for approved test files, not attached media assets. For BAL-D03–05, confirm whether the service rounds media duration before assigning final expected results. See [test data specification](test-data-catalog.md).
+**Test files:** `sample_video_10s.mp4` — 10 s (BAL-D01, BAL-D03–05); `sample_video_26m16s.mp4` — 26 min 16 s (BAL-D02). [Test data specification](test-data-catalog.md).
 
 ## Equivalence classes
 
@@ -73,7 +73,7 @@
 
 ### TC-BAL-003 — Check the eligibility boundary
 
-**Preconditions / test data:** Supported **`sample_video_10s.mp4`** with duration **00:00:10**; prepare three independent account states with available time **9 s**, **10 s** and **11 s**. Clear the selected-file queue before each attempt. Confirm the balance calculation/rounding policy.
+**Preconditions / test data:** Supported **`sample_video_10s.mp4`**, duration **00:00:10**; separate account states with available time **9 s**, **10 s** and **11 s**. Clear the file queue before each attempt.
 
 1. Set the available time to **9 seconds** and select **`sample_video_10s.mp4`** (00:00:10).
 2. Record whether **Insufficient balance** or **Ready to upload!** appears, the reported shortage and the availability of **Start upload!**.
@@ -112,6 +112,6 @@
 | BAL-01, BAL-02 | TC-BAL-001, TC-BAL-003 |
 | BAL-03 | TC-BAL-002, TC-BAL-003, TC-BAL-004 |
 | BAL-04, BAL-05 | TC-BAL-002 |
-| Balance update / refresh behavior (0 s → 3600 s, selected 10 s file) | TC-BAL-004 — rule to confirm |
+| Balance update / refresh behavior (0 s → 3600 s, selected 10 s file) | TC-BAL-004 |
 
 [← Test design overview](test-design-workbook.md) · [← Portfolio](../README.md)
