@@ -23,15 +23,19 @@ Areas of responsibility:
 
 ## Selected QA work samples
 
-| Artifact | What it demonstrates |
-| --- | --- |
-| [Test design workbook](portfolio/test-design-workbook.md) | Equivalence partitioning, boundary value analysis, decision tables, state transitions, and pairwise thinking |
-| [Pairwise drag-and-drop case](portfolio/pairwise-drag-drop.md) | Six executable configurations selected from 24, validated two-way factor coverage, and risk-based additional checks |
-| [Sample defect reports](portfolio/defect-report-samples.md) | Reproducible reports with expected/actual behavior, impact, and supporting evidence requirements |
-| [Regression & release assessment](portfolio/regression-and-release.md) | Change impact analysis, prioritization, risk-based regression, and honest release reporting |
-| [QA handover playbook](portfolio/qa-handover-playbook.md) | Transfer of product knowledge, test assets, routines, and independent ownership criteria |
+| Artifact | What it demonstrates | Evidence status |
+| --- | --- | --- |
+| **[Audiodoc Studio — File Upload & Available-Time Gate](portfolio/audiodoc-studio-file-upload.md)** | Real UI constraints, the confirmed zero-balance restriction, EP, BVA, partial decision table, and executable draft test cases | UI screenshots + QA clarification; **not executed** |
+| [Test design workbook — Audiodoc Studio](portfolio/test-design-workbook.md) | Choosing a fitting design technique for each real interface area and documenting unanswered requirements | Design / analysis |
+| [Regression & release assessment](portfolio/regression-and-release.md) | Change-impact reasoning, risk-based regression and release summaries | Illustrative process sample |
+| [QA handover playbook](portfolio/qa-handover-playbook.md) | Transfer of product knowledge, test assets, routines and independent ownership criteria | Illustrative process sample |
 
-> **About these samples:** They use a **not production test runs, real defects, or internal Audiodoc documents**.
+### Additional learning exercises
+
+- [Pairwise drag-and-drop case](portfolio/pairwise-drag-drop.md) — **fictional task parameters**, selected combinations; *not an executed Audiodoc test*.
+- [Sample defect reports](portfolio/defect-report-samples.md) — **fictional defects**, designed to demonstrate reporting structure; *not real production findings*.
+
+**Evidence policy:** The Audiodoc Studio case uses visible interface text and a QA clarification about zero available time. A described requirement is **not** a passed test. Other examples are explicitly marked as educational exercises. No confidential internal documentation, test results, private data, or undisclosed production defects are published.
 
 ## How I think about quality
 
