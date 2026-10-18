@@ -35,7 +35,7 @@ Media files must be decodable, contain no personal or confidential information, 
 | COUNT-10 | `count_01.mp4`–`count_10.mp4` | 10 | 100 s | 3600 s |
 | COUNT-11 | `count_01.mp4`–`count_11.mp4` | 11 | 110 s | 3600 s |
 
-Reset the queue between each selection. Confirm whether the product's maximum of 10 applies per batch, queue or document inventory.
+Reset the queue between each selection.
 
 ## File-size boundary data
 
