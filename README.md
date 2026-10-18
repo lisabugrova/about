@@ -1,6 +1,6 @@
 # Elizaveta Bugrova
 
-**Language:** English · [Русская версия](ru/README.md)
+**Language:** [English](README.md) · [Русская версия](ru/README.md)
 
 **QA Engineer | Manual Web Testing | Regression Testing | Release Verification**
 
