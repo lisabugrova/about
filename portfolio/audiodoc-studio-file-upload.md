@@ -40,7 +40,7 @@
 | File count | 0, 1, 9, 10, 11 | Empty input and 10-file limit |
 | File size (decimal-MB test set) | 1,699,999,999; 1,700,000,000; 1,700,000,001 bytes | At/around the 1700 MB boundary |
 
-**Clarify before execution:** whether 10 is a per-batch or total-queue limit; whether MB is decimal or binary; how an invalid file in a mixed selection is handled. If **1700 MiB** is intended, use **1,782,579,199 / 1,782,579,200 / 1,782,579,201 bytes** instead. All boundary sizes describe *planned fixtures*, not already-created files. See [test data specification](test-data-catalog.md).
+**Test parameters:** 10- and 11-file selections; maximum **1700 MB** per file. Decimal-MB boundary values are listed above; for **1700 MiB** use **1,782,579,199 / 1,782,579,200 / 1,782,579,201 bytes**. [Test data specification](test-data-catalog.md).
 
 ## Test cases
 
