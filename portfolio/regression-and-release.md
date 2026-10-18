@@ -1,48 +1,62 @@
-# Risk-based regression and release assessment
+# Audiodoc Studio — Regression Test Selection & Release Summary
 
-**Scope:** fictional sample process for an audio-story web app. No actual Audiodoc release data, outcomes, or metrics appear here.
-
-## Change scenario
-A hypothetical release modifies the audio player to restore playback position after navigation.
+**Area:** File upload, available processing time, processing results  
+**Regression target:** Changes to time-balance validation, selected-file queue or upload/processing flow  
+**Approach:** Change impact analysis + risk-based selection.
 
 ## Impact analysis
-Likely affected: player lifecycle, navigation, local persistence, multiple open tabs, retry/error recovery, and mobile backgrounding. Related risks: stale position across stories, duplicated audio, failure to resume, and state corruption.
 
-## Prioritized regression selection
-
-| Level | Example check | Why it matters |
+| Affected component | Potential regression risk | Test coverage |
 | --- | --- | --- |
-| P0 | Start, pause, resume and stop a playable story | Core journey |
-| P0 | Navigate between different stories without overlapping audio | User-facing interruption |
-| P0 | Seek/resume position associated with correct story | Data integrity |
-| P1 | Refresh during playback and restore position | Changed functionality |
-| P1 | Retry after interrupted media loading | Failure recovery |
-| P1 | Denied location permission still allows list browsing | Adjacent critical path |
-| P2 | Playback speed controls persist as specified | Secondary interaction |
-| P2 | Responsive layout and keyboard player controls | Usability/accessibility |
+| Available-time validation | User can start without enough time, or valid upload is blocked | TC-BAL-001, TC-BAL-002, TC-BAL-003 |
+| Selected-file queue | Invalid state or stale validation after selection/removal | TC-UPL-001, TC-UPL-006 |
+| Upload entry methods | Validation bypass through drag-and-drop | TC-UPL-002, TC-BAL-001 variant |
+| File limits | Accepting more than 10 files or file larger than 1700 MB | TC-UPL-003, TC-UPL-004, TC-UPL-005 |
+| Processing lifecycle | Stuck state, missing warning or result actions | TC-BAL-002 |
+| Balance update | UI does not re-evaluate an already selected file | TC-BAL-004 |
 
-**Selection logic:** prioritize business impact, failure likelihood, changed code paths, previous verified defects (if available), and dependencies. A regression suite is not automatically the entire test inventory.
+## Prioritized regression checks
 
-## Definition of test completion
-- Selected P0 checks executed with outcomes recorded.
-- Remaining failures/blocked tests explicitly listed.
-- Changes since the tested build identified.
-- Known exclusions, environments not covered, and risk acceptance clearly documented.
-- Stakeholders receive a test summary; QA **informs** the release decision rather than unilaterally certifying the product defect-free.
+| Priority | Scenario | Selection rationale |
+| --- | --- | --- |
+| P0 | Balance 0 s, video 10 s: visible error and no upload action | Enforces a core business restriction |
+| P0 | Balance 1 h, video 26:16: upload and result | Ensures main user journey remains available |
+| P0 | Verify processing result can be downloaded and opened in editor | Core output delivery |
+| P1 | Balance D−1 / D / D+1 around required duration | Boundary and rounding risk |
+| P1 | Both picker and drag-and-drop apply the same eligibility checks | Alternate entry-point risk |
+| P1 | Reject 11 files and above-limit file size | Enforce advertised upload constraints |
+| P1 | Re-evaluate selected file after available time changes | Stale state risk |
+| P2 | Clear queue and select another file | Recovery/usability path |
+| P2 | UI behavior on supported browsers and screen sizes | Compatibility coverage |
 
-## Template: release testing summary
+## Exit criteria for this scope
 
-| Field | Sample value / instruction |
+- Priority P0 checks executed against the candidate build.
+- Blocking failures reviewed; known issues and deviations tracked.
+- P1/P2 exclusions and blocked checks explicitly listed.
+- Changed requirements, untested environments and residual risks included in the release summary.
+- Product/release owner can make a decision using the recorded evidence.
+
+## Release test summary template
+
+| Field | Entry |
 | --- | --- |
-| Build / environment | Record actual tested build |
-| Scope of change | Describe change and affected functions |
-| Planned / executed / passed / failed / blocked | Fill from actual execution — **not populated here** |
-| Outstanding high-impact defects | Link real tracked defects, if any |
-| Not tested / limitations | Name excluded devices, scenarios, or environments |
-| Residual risk | Describe likelihood × impact, with evidence |
-| Recommendation | Ready / conditional / not ready **with rationale** |
-| Decision owner | Record accountable product/engineering owner |
+| Release / build | |
+| Environment, browser and OS | |
+| Change description | |
+| Test scope and selected regression IDs | |
+| Total planned / executed | |
+| Passed / failed / blocked / not run | |
+| Open defects, severity and links | |
+| Coverage gaps and exclusions | |
+| Residual risk | |
+| QA recommendation with rationale | |
+| Release decision and owner | |
 
-**No pass rate or readiness verdict is claimed** because no execution is presented.
+## Related artifacts
 
-[← Portfolio home](../README.md)
+- [File Upload Test Design](audiodoc-studio-file-upload.md)
+- [Balance Validation Test Design](audiodoc-studio-balance-validation.md)
+- [Test Execution Summary](test-execution-report.md)
+
+[← Portfolio](../README.md)
