@@ -53,10 +53,6 @@
 | QA recommendation with rationale | |
 | Release decision and owner | |
 
-## Test data for regression
-
-Use the [Test Data Specification](test-data-catalog.md): **10 s** and **26:16** videos, balance values **0 / 9 / 10 / 11 / 3600 s**, and file-count sets of **9, 10 and 11**. Restore the specified starting balance and selected-file queue before each independent check.
-
 ## Related artifacts
 
 - [File Upload Test Design](audiodoc-studio-file-upload.md)
