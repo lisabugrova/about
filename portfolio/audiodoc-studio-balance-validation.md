@@ -25,7 +25,7 @@
 | BAL-D04 | **10 seconds** | **10 seconds** | Balance equals video duration |
 | BAL-D05 | **11 seconds** | **10 seconds** | One second above video duration |
 
-**Test files:** `sample_video_10s.mp4` — 10 s (BAL-D01, BAL-D03–05); `sample_video_26m16s.mp4` — 26 min 16 s (BAL-D02). [Test data specification](test-data-catalog.md).
+**Test files:** `sample_video_10s.mp4` — 10 s (BAL-D01, BAL-D03–05); `sample_video_26m16s.mp4` — 26 min 16 s (BAL-D02).
 
 ## Equivalence classes
 
