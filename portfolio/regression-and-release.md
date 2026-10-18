@@ -22,11 +22,11 @@
 | P0 | Balance 0 s, video 10 s: visible error and no upload action | Enforces a core business restriction |
 | P0 | Balance 1 h, video 26:16: upload and result | Ensures main user journey remains available |
 | P0 | Verify processing result can be downloaded and opened in editor | Core output delivery |
-| P1 | Balance D−1 / D / D+1 around required duration | Boundary and rounding risk |
+| P1 | 10-second video with balances **9 s / 10 s / 11 s** | Boundary and rounding risk |
 | P1 | Both picker and drag-and-drop apply the same eligibility checks | Alternate entry-point risk |
-| P1 | Reject 11 files and above-limit file size | Enforce advertised upload constraints |
-| P1 | Re-evaluate selected file after available time changes | Stale state risk |
-| P2 | Clear queue and select another file | Recovery/usability path |
+| P1 | `count_01.mp4`–`count_11.mp4` (**11 × 10 s**, balance 3600 s); size **1,700,000,001 B** (decimal-MB assumption) | Enforce advertised upload constraints |
+| P1 | Selected **10 s** video, balance changed **0 s → 3600 s** | Stale state risk |
+| P2 | With balance 3600 s, select **10 s** MP4, clear, then select **26:16** MP4 | Recovery/usability path |
 | P2 | UI behavior on supported browsers and screen sizes | Compatibility coverage |
 
 ## Exit criteria for this scope
