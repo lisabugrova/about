@@ -28,6 +28,4 @@ This test-design index connects product requirements with suitable techniques an
 
 **ID · Title · Requirement · Priority · Preconditions · Test data · Steps · Expected result**
 
-Technique selection follows Copeland and the ISTQB CTFL syllabus; test documentation conventions are informed by Kulikov. See [references](../REFERENCES.md).
-
 [← Portfolio](../README.md)
