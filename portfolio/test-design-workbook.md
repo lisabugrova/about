@@ -24,8 +24,4 @@ This test-design index connects product requirements with suitable techniques an
 - [ ] Clarify missing acceptance criteria before asserting precise behavior.
 - [ ] Keep execution evidence, defects and release decisions in separate artifacts.
 
-## Test-case structure
-
-**ID · Title · Requirement · Priority · Preconditions · Test data · Steps · Expected result**
-
 [← Portfolio](../README.md)
