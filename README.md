@@ -25,7 +25,8 @@ Areas of responsibility:
 
 | Artifact | What it demonstrates | Evidence status |
 | --- | --- | --- |
-| **[Audiodoc Studio — File Upload & Available-Time Gate](portfolio/audiodoc-studio-file-upload.md)** | Real UI constraints, the confirmed zero-balance restriction, EP, BVA, partial decision table, and executable draft test cases | UI screenshots + QA clarification; **not executed** |
+| **[Audiodoc Studio — Balance Validation](portfolio/audiodoc-studio-balance-validation.md)** | **Observed negative and positive cases:** insufficient-balance error for a 10-second video at 0 balance; a 26:16 video ready to process at 1 hour, followed by tester-reported successful output | Screenshots for validation/ready states; completion **tester-reported**; no versioned test-run log |
+| [Audiodoc Studio — File Upload & Available-Time Gate](portfolio/audiodoc-studio-file-upload.md) | Upload limits, EP/BVA, decision table, sample checks and evidence-aware reporting | Mixed: observed balance cases; other tests **Not Run** |
 | [Test design workbook — Audiodoc Studio](portfolio/test-design-workbook.md) | Choosing a fitting design technique for each real interface area and documenting unanswered requirements | Design / analysis |
 | [Regression & release assessment](portfolio/regression-and-release.md) | Change-impact reasoning, risk-based regression and release summaries | Illustrative process sample |
 | [QA handover playbook](portfolio/qa-handover-playbook.md) | Transfer of product knowledge, test assets, routines and independent ownership criteria | Illustrative process sample |
@@ -35,7 +36,7 @@ Areas of responsibility:
 - [Pairwise drag-and-drop case](portfolio/pairwise-drag-drop.md) — **fictional task parameters**, selected combinations; *not an executed Audiodoc test*.
 - [Sample defect reports](portfolio/defect-report-samples.md) — **fictional defects**, designed to demonstrate reporting structure; *not real production findings*.
 
-**Evidence policy:** The Audiodoc Studio case uses visible interface text and a QA clarification about zero available time. A described requirement is **not** a passed test. Other examples are explicitly marked as educational exercises. No confidential internal documentation, test results, private data, or undisclosed production defects are published.
+**Evidence policy:** Audiodoc Studio work samples distinguish **what screenshots show**, **what a tester reports**, and **what remains untested**. The balance restriction behaves as expected in the observed zero-balance case; any request for an explicit top-up action is an **unconfirmed UX acceptance criterion**, not a confirmed defect. Other learning examples remain explicitly fictional. Uploaded screenshots, file names, client files and confidential records are not republished.
 
 ## How I think about quality
 
