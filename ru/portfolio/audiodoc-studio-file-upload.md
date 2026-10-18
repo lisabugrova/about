@@ -113,4 +113,4 @@
 | UP-05 | TC-UPL-006 |
 | UP-06 | [Тест-дизайн проверки баланса](audiodoc-studio-balance-validation.md) |
 
-[← Обзор тест-дизайна](test-design-workbook.md) · [← Портфолио](../README.md)
+[← Портфолио](../README.md)
