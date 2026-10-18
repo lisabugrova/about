@@ -16,7 +16,7 @@ I am a QA engineer with commercial experience since 2024, working on functional 
 | **[Audiodoc Studio — Balance & Processing Test Design](portfolio/audiodoc-studio-balance-validation.md)** | Balance-versus-duration validation, decision table, state transitions and four test cases |
 | [Upload Validation — Test Execution Summary](portfolio/test-execution-report.md) | Observed insufficient-balance response, successful readiness and tester-reported processing/results |
 | [Regression Test Selection & Release Summary](portfolio/regression-and-release.md) | Change-impact analysis, prioritized regression coverage, release summary template |
-| [QA Handover Checklist](portfolio/qa-handover-playbook.md) | Knowledge-transfer plan, practical independence criteria and handover sign-off |
+| [QA Process Handover — End-to-End Ownership Transfer](portfolio/qa-handover-playbook.md) | Transferring the full testing cycle, product context, team collaboration, and QA reporting |
 
 **Supporting documents:** [Test Design Overview](portfolio/test-design-workbook.md) · [Defect Report Template](portfolio/defect-report-template.md)
 
