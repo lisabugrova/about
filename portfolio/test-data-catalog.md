@@ -1,6 +1,6 @@
 # Audiodoc Studio — Test Data Specification
 
-**Purpose:** Reproducible data for the [file-upload](audiodoc-studio-file-upload.md) and [balance-validation](audiodoc-studio-balance-validation.md) test cases. The names below identify **files to prepare**; they are not links to already uploaded media.
+**Purpose:** Test data for [file upload](audiodoc-studio-file-upload.md) and [balance validation](audiodoc-studio-balance-validation.md).
 
 ## Media fixtures
 
@@ -18,12 +18,12 @@ Media files must be decodable, contain no personal or confidential information, 
 | --- | --- | --- | --- | --- |
 | BAL-D01 | `sample_video_10s.mp4` | 10 s | **0 s** | Observed insufficient-balance condition |
 | BAL-D02 | `sample_video_26m16s.mp4` | 1576 s | **3600 s** | Observed ready and reported successful processing |
-| BAL-D03 | `sample_video_10s.mp4` | 10 s | **9 s** | Planned: 1 second below boundary |
-| BAL-D04 | `sample_video_10s.mp4` | 10 s | **10 s** | Planned: exactly at boundary |
-| BAL-D05 | `sample_video_10s.mp4` | 10 s | **11 s** | Planned: 1 second above boundary |
-| BAL-D06 | `sample_video_10s.mp4` | 10 s | **0 s → 3600 s** | Planned: balance refresh while a file is selected |
+| BAL-D03 | `sample_video_10s.mp4` | 10 s | **9 s** | One second below boundary |
+| BAL-D04 | `sample_video_10s.mp4` | 10 s | **10 s** | Exactly at boundary |
+| BAL-D05 | `sample_video_10s.mp4` | 10 s | **11 s** | One second above boundary |
+| BAL-D06 | `sample_video_10s.mp4` | 10 s | **0 s → 3600 s** | Balance refresh while a file is selected |
 
-Prepare balances in an approved test account using a permitted test-data setup; do not use real purchases solely to establish these test conditions without authorization. **BAL-D03–05 are proposed execution data; the exact acceptance rule and rounding have not been verified.**
+**Environment:** test account with balances of 0, 9, 10, 11 and 3600 seconds.
 
 ## File-count test matrix
 
@@ -39,7 +39,7 @@ Reset the queue between each selection. Confirm whether the product's maximum of
 
 ## File-size boundary data
 
-The displayed maximum is **1700 MB per file**. Exact byte limits must be confirmed before execution.
+**Interface limit:** 1700 MB per file. The table covers decimal MB and binary MiB interpretations.
 
 | Test case | Decimal 1700 MB interpretation | Binary 1700 MiB interpretation |
 | --- | ---: | ---: |
@@ -53,7 +53,7 @@ For the *decimal interpretation*, prepare valid **00:26:16** MP4 files with thes
 - `size_1700000000B.mp4` — 1,700,000,000 B
 - `size_1700000001B.mp4` — 1,700,000,001 B
 
-With a binary interpretation, produce valid media at the alternate byte sizes and name each file by its actual byte length. Use **3600 s** available time for each individual file-size check. Do not simply corrupt or append arbitrary bytes to a media container: the fixture must remain a valid, supported video. Large-file checks require approved storage, bandwidth and test environment capacity.
+**Preconditions:** valid MP4 files of the specified sizes; balance **3600 s**; clear the queue between checks.
 
 ## Execution controls
 
