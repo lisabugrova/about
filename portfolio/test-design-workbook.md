@@ -1,40 +1,33 @@
-# Test design workbook — Audiodoc Studio
+# Audiodoc Studio — Test Design Overview
 
-**Status: in progress · Test-design artifact, not an execution report.**
+This test-design index connects product requirements with suitable techniques and detailed test cases.
 
-This workbook connects software test design techniques to observable functionality in **Audiodoc Studio**. It replaces the previous fictional story-search examples as the main demonstration of design thinking.
+## Test-design map
 
-## Feature and technique map
+| Feature / condition | Technique | Test-design artifact |
+| --- | --- | --- |
+| Up to 10 files | Equivalence Partitioning, Boundary Value Analysis | [File Upload: TC-UPL-003, TC-UPL-004](audiodoc-studio-file-upload.md) |
+| Up to 1700 MB per file | Equivalence Partitioning, Boundary Value Analysis | [File Upload: TC-UPL-005](audiodoc-studio-file-upload.md) |
+| File picker and drag-and-drop | Input-path coverage | [File Upload: TC-UPL-001, TC-UPL-002](audiodoc-studio-file-upload.md) |
+| Insufficient / sufficient available time | Equivalence Partitioning, Decision Table Testing | [Balance Validation: TC-BAL-001, TC-BAL-002](audiodoc-studio-balance-validation.md) |
+| Balance-to-duration threshold | Boundary Value Analysis | [Balance Validation: TC-BAL-003](audiodoc-studio-balance-validation.md) |
+| Upload and processing workflow | State Transition Testing | [Balance Validation: workflow and transitions](audiodoc-studio-balance-validation.md) |
+| Change impact and release checks | Risk-based test selection | [Regression Test Selection](regression-and-release.md) |
 
-| Observed feature | Test-design technique | Why this technique fits | Work sample |
-| --- | --- | --- | --- |
-| File-upload quantity limit (maximum 10 files) | **Equivalence Partitioning (EP), Boundary Value Analysis (BVA)** | Distinguish permitted/over-limit classes; test 9, 10, 11 around the boundary | [File upload and available time](audiodoc-studio-file-upload.md) |
-| Per-file size limit (up to 1700 MB each) | **EP, BVA** | Test just below, at, and just above the exact byte limit (unit needs clarification) | [File upload and available time](audiodoc-studio-file-upload.md) |
-| Insufficient processing time versus video length | **EP, Decision Table Testing** | A zero balance and 10-second video produce a 10-second shortfall; at 1 hour a 26:16 video is ready to upload | [Observed balance validation scenarios](audiodoc-studio-balance-validation.md) |
-| Select file versus drag-and-drop | **Functional testing and alternate-input coverage** | Both UI pathways must respect the same validation and access constraints | [File upload and available time](audiodoc-studio-file-upload.md) |
-| Minutes/hours selector, plus/minus, payment selection | **BVA + Decision Tables, after rule clarification** | Need min/max increments, ranges, pricing and state rules before producing precise oracles | Planned |
-| Price tiers beginning at 300, 600 and 1200 minutes, as shown in the expanded UI | **BVA + Decision Tables, after rule clarification** | Rate changes are possible decision thresholds, but the exact pricing formula and boundaries are not yet confirmed | Planned |
-| Upload / processing lifecycle | **State Transition Testing** | Observed blocked/ready states; upload, processing warning and finished result are tester-reported; failures/retry/cancel need testing | [Observed balance validation scenarios](audiodoc-studio-balance-validation.md) |
-| Browser and device combinations | **Pairwise Testing, after confirming supported environments** | Optimize cross-platform combinations while preserving two-factor coverage | [Educational example only](pairwise-drag-drop.md) |
+## Test-design checklist
 
-## Key confirmed business rule
+- [ ] Identify the requirement, source and relevant business rule.
+- [ ] Define positive, negative and boundary conditions.
+- [ ] Prepare test data and prerequisites that isolate the feature under test.
+- [ ] Write reproducible steps and observable expected results.
+- [ ] Link each test case to its requirement.
+- [ ] Clarify missing acceptance criteria before asserting precise behavior.
+- [ ] Keep execution evidence, defects and release decisions in separate artifacts.
 
-**REQ-UPL-001 (refined):** A file **can be selected** when balance is insufficient, but upload/processing is blocked. The **0 sec / 10 sec video** screenshot shows *Insufficient balance* and *Not enough time, you need 10 seconds more*. The **1 hour / 26:16 video** screenshot shows *Ready to upload!* and *Start upload!*; successful processing, download and editor access are reported by the tester.
+## Test-case structure
 
-Case [TC-BAL-001 and TC-BAL-002](audiodoc-studio-balance-validation.md) separate these behaviors and sources. **TC-UPL-002** (zero-balance drag-and-drop entry specifically) remains **Not Run**; selecting a file does not establish the exact input mechanism used.
+**ID · Title · Requirement · Priority · Preconditions · Test data · Steps · Expected result**
 
-## Work items before execution
+Technique selection follows Copeland and the ISTQB CTFL syllabus; test documentation conventions are informed by Kulikov. See [references](../REFERENCES.md).
 
-1. **Observed:** with zero balance, a selected file is shown with an insufficient-balance message. Confirm whether the agreed UX requires a direct top-up instruction/action in that error and whether click-to-select and drag-and-drop behave identically.
-2. Confirm the exact scope of the 10-file limit and the exact bytes meant by 1700 MB.
-3. Confirm supported formats and duration-to-balance calculation (including exact equality and rounding). A positive balance **alone** does not prove eligibility.
-4. Execute tests in an approved environment with synthetic files; document actual outcomes and defects.
-5. Add verified product or release evidence only if publication is authorized.
-
-## Study foundation
-
-- Lee Copeland, *A Practitioner's Guide to Software Test Design* — EP, BVA, decisions and combinations.
-- Sviatoslav Kulikov, *Software Testing: Basic Course* — practical testing foundations and documentation.
-- [ISTQB CTFL 4.0.1](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf) — standardized vocabulary, test design and reporting.
-
-[← Detailed Audiodoc Studio case](audiodoc-studio-file-upload.md) · [← Portfolio home](../README.md)
+[← Portfolio](../README.md)
