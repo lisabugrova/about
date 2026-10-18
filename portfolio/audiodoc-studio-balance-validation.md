@@ -33,7 +33,7 @@
 | --- | --- | --- |
 | EP-BAL-01 | Insufficient | File can be selected; upload is blocked; shortage displayed |
 | EP-BAL-02 | Sufficient | File can reach **Ready to upload!**; upload action available |
-| EP-BAL-03 | Balance **10 seconds**, video **10 seconds** | Apply specified time comparison and rounding policy |
+| EP-BAL-03 | Balance **10 seconds**, video **10 seconds** | Check equality boundary |
 
 ## Decision table
 
@@ -41,9 +41,9 @@
 | --- | --- | --- | --- |
 | DT-BAL-01 | 0 s | 10 s | **Insufficient balance**, need 10 more seconds; cannot start |
 | DT-BAL-02 | 3600 s | 1576 s | **Ready to upload!**; **Start upload!** available |
-| DT-BAL-03 | 9 s | 10 s | Expected shortage **1 s** if time is charged per second; verify rounding |
-| DT-BAL-04 | 10 s | 10 s | Equality boundary: verify approved comparison rule |
-| DT-BAL-05 | 11 s | 10 s | Sufficient if time is charged per second; verify additional constraints |
+| DT-BAL-03 | 9 s | 10 s | **Insufficient balance**, **1 s** short under second-level accounting |
+| DT-BAL-04 | 10 s | 10 s | **Ready to upload!** under second-level accounting |
+| DT-BAL-05 | 11 s | 10 s | **Ready to upload!** under second-level accounting |
 
 ## Test cases
 
@@ -78,9 +78,9 @@
 1. Set the available time to **9 seconds** and select **`sample_video_10s.mp4`** (00:00:10).
 2. Record whether **Insufficient balance** or **Ready to upload!** appears, the reported shortage and the availability of **Start upload!**.
 3. Clear the selection, set the available time to **10 seconds**, and select the same file; record the result.
-4. Repeat with **11 seconds** available; compare each outcome against the confirmed calculation/rounding rule.
+4. Repeat with **11 seconds** available; compare the upload states across the three balances.
 
-**Expected result:** Availability, shortage and permitted actions match the confirmed balance-calculation rule without off-by-one errors.
+**Expected result (second-level accounting model):** **9 s** — **Insufficient balance**, **1 s** short; **10 s** and **11 s** — **Ready to upload!**, **Start upload!** available.
 
 ### TC-BAL-004 — Validate the incomplete-balance workflow
 
