@@ -58,8 +58,24 @@ States: **Idle → Loading → Playing ↔ Paused → Ended**. Error can occur f
 
 Also explore invalid transitions, repeated taps, slow responses, backgrounding, and interruption by incoming audio.
 
-## 5. Pairwise coverage thinking
-Potential dimensions: browser (Chrome / Firefox / Safari), viewport (mobile / desktop), network (online / offline), location permission (granted / denied). A full Cartesian combination produces 3 × 2 × 2 × 2 = **24** combinations. Generate a pairwise covering array using a suitable tool; **do not label a manually selected subset as verified pairwise coverage** without checking all value pairs. Use risk to add high-impact scenarios beyond pairwise coverage.
+## 5. Pairwise testing: practical drag-and-drop example
+
+**Audiodoc-style educational scenario, not a documented production test run.** For a hypothetical drag-and-drop task, vary **browser** (Chrome / Firefox / Safari), **device** (desktop / mobile), **draggable item count** (3 / 10), and **drop target** (valid / invalid). All these values are *assumptions* to validate against the actual feature.
+
+There are **3 × 2 × 2 × 2 = 24** full configurations, but this verified pairwise covering array needs **6 configurations** and covers all **30 distinct value pairs**:
+
+| ID | Browser | Device | Items | Drop target |
+| --- | --- | --- | ---: | --- |
+| PW-01 | Chrome | Desktop | 3 | Valid |
+| PW-02 | Chrome | Mobile | 10 | Invalid |
+| PW-03 | Firefox | Desktop | 3 | Invalid |
+| PW-04 | Firefox | Mobile | 10 | Valid |
+| PW-05 | Safari | Desktop | 10 | Valid |
+| PW-06 | Safari | Mobile | 3 | Invalid |
+
+Each row is an **execution configuration**, not a test result. On the selected device/browser, open the specified task, drag an item to the chosen target type, and check placement, visual feedback, and task state against confirmed requirements. Record environment, build, pass/fail/blocked status, and evidence.
+
+See **[full pairwise drag-and-drop case study](pairwise-drag-drop.md)** for prerequisites, exact example steps, pair-coverage calculation, risk-based additional tests, and limitations. Pairwise is **not** a substitute for high-impact edge cases, nor proof that every 3-way interaction is covered.
 
 ## Traceability and review
 Map each scenario to a requirement ID once real requirements are available; record environment, build, expected result, actual result, and evidence on execution. These tables demonstrate *design*, not a test run.
