@@ -31,7 +31,7 @@ Test 0, 1, 2 and 79, 80, 81 characters for an inclusive 1–80-character constra
 | BVA-06 | 81 | Reject |
 
 ## 3. Decision table: location and connectivity
-Assumptions: cached story list can be read offline; a location pin appears only with permission granted and a location fix; location refusal never blocks the story list.
+Cached story list can be read offline; a location pin appears only with permission granted and a location fix; location refusal never blocks the story list.
 
 | Rule | Network available | List cache available | Location granted | Expected |
 | --- | --- | --- | --- | --- |
