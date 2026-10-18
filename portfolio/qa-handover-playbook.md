@@ -1,41 +1,32 @@
-# QA Handover — Operational Reference
+# QA handover
 
-**Artifact type:** process reference. This is a usable handover plan, not a claim that a particular transfer has already been completed.
+Reference plan for handing QA work to another engineer.
 
-## Objective
+## Work through a change
 
-Enable the incoming QA engineer to take a change from requirements through execution, defect follow-up and release reporting, using the same product understanding and evidence standards.
-
-## Handover sequence
-
-| Stage | Work together | Deliverable / exit criterion |
+| Stage | Work | Ready when |
 | --- | --- | --- |
-| 1. Product orientation | Walk the core journey and the failure consequences. Explain user roles, processing time, editor variants and sharing. | Incoming engineer can describe the journey and the highest risks using the [coverage map](product-coverage.md). |
-| 2. Environment and data | Identify supported builds, test accounts, synthetic fixtures, payment sandbox and service dependencies. | A repeatable setup; no credentials in documentation; known blocked prerequisites listed. |
-| 3. Shared execution | Execute one happy path, one negative path and one persistence/recovery path. | Results identify build/environment/data and separate observed, reported and unverified behavior. |
-| 4. Defect workflow | Reproduce an actual authorized issue, agree impact, discuss with a developer, and retest a fix if available. | Another person can reproduce the report; retest links to the changed build. Do not invent a defect to satisfy the exercise. |
-| 5. Independent cycle | Incoming engineer selects scope for a real change, executes and reports; outgoing engineer reviews reasoning. | A coherent release recommendation with exclusions and residual risks; corrections incorporated. |
+| Product walkthrough | Follow the core journey; explain roles, processing time, editor variants and sharing. | The incoming engineer can explain the main risks using the [coverage map](product-coverage.md). |
+| Setup | Prepare the target build, test accounts, synthetic files, payment sandbox and required services. | Setup is repeatable; missing prerequisites are listed; documentation contains no credentials. |
+| Shared testing | Run a happy path, a negative case and a save/recovery case. | Results name the build, environment and data, separating observations from reported or unverified behavior. |
+| Defect follow-up | Reproduce a real issue within the agreed scope, discuss its impact with a developer and retest a fix if available. | The report is reproducible and the retest names the build. Use an existing issue if no new defect is found. |
+| Independent testing | The incoming engineer selects and runs checks for a real change; the outgoing engineer reviews the results. | The release recommendation explains exclusions and remaining risks; review comments are addressed. |
 
-## Materials to transfer
+## Hand over
 
-- [Coverage and fixtures](product-coverage.md): critical journeys, rule boundaries, product-specific expectations.
-- [Feature designs](test-design-workbook.md): reusable cases and their intended scope.
-- Execution records: actual build, environment, data and evidence; historical results stay identifiable.
-- Defect register: open/resolved items, impact, reproduction and retest status in the team's tracker.
-- [Regression and release](regression-and-release.md): prioritization and decision format.
-- Operational contacts: owners of requirements, deployments, accounts, provider sandbox and release decisions, recorded in the internal team workspace.
+- [Coverage and test data](product-coverage.md), [test cases](test-design-workbook.md) and [regression checks](regression-and-release.md).
+- Execution records with build, environment, data and evidence; keep old and new results distinct.
+- The team's defect tracker: open issues, resolved issues, reproduction steps and retest status.
+- Internal contacts for requirements, deployment, test accounts, payment sandbox and release decisions.
 
-## Product-specific knowledge
+## Audiodoc details to explain
 
-- “1700 MB” in the UI uses a binary byte limit; do not change the expected threshold without checking the target build.
-- Unknown media duration may require transfer/probe before the final processing check.
-- Shared links still require authentication; reading, editing and ownership are separate permissions.
-- Classic and beta word-based editors have different capabilities; the current test target must be named.
-- Successful UI feedback does not by itself prove saved content, usable export or reconciled balance.
+- The displayed “1700 MB” uses a binary byte limit; check the target build before changing the expected threshold.
+- Unknown duration may require transfer and a server probe before the final processing check.
+- Shared links require sign-in. Reading, editing and ownership have different permissions.
+- Classic and beta word-based editors differ; name the editor being tested.
+- Check saved content, exported files and balance separately from the UI's success message.
 
-## Completion
-
-The incoming engineer can independently choose a useful scope, prepare data, execute, report reproducible findings, follow a fix and explain what remains untested. Review one subsequent cycle to confirm the process remains usable.
+Finish when the incoming engineer can prepare and run checks, report findings, follow fixes and explain what remains untested. Review the next cycle to check that the handover holds up in practice.
 
 [Profile](../README.md) · [Design index](test-design-workbook.md)
-

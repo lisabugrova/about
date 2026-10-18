@@ -1,80 +1,80 @@
 # Transcript editing, audio and output
 
-**Reference test design — not an execution report.** These cases illustrate testing of Audiodoc Studio's editor and output workflows. They are newly prepared reference material, not a record of tests executed by Elizaveta or defects she reported. No case below has a pass/fail result.
+**Reference test design.** For the origin and status of these cases, see the [test design workbook](test-design-workbook.md).
 
 [Profile](../README.md) · [Product coverage](product-coverage.md) · [Regression and release](regression-and-release.md)
 
-The central quality question is whether a user can correct a transcript, check it against the recording, prepare a story and obtain usable files without losing work or changing unrelated content. A successful save response or a completed download is one checkpoint; reopening the document or exported file establishes the user-facing result.
+Check that users can correct a transcript, listen back, assemble a story and export usable files without losing work. Verify results by reopening documents and files.
 
 ## Scope and test data
 
-The **classic editor** supports segment editing and story assembly. The separate **beta editor** supports continuous text and rich formatting for transcripts that already contain word-level timing. Older transcripts without word-level data remain in the classic editor. Story assembly uses whole segments; it does not promise word-precise cuts or montage from several source recordings.
+The **classic editor** supports segment editing and stories. The **beta editor** adds continuous text and rich formatting for transcripts with word-level timing. Older transcripts stay in classic. Stories use whole segments from one recording, without word-precise cuts.
 
-Use disposable documents and recordings approved for testing. Keep an unchanged baseline and identify every document and story unambiguously.
+Use approved test recordings, named documents and stories, and an unchanged baseline.
 
 | Fixture | Contents and purpose |
 |---|---|
-| A — timed interview | Two speakers, an unassigned introduction, repeated words, punctuation, and a clearly audible pause between adjacent words. Retain a baseline transcript and known audio positions. |
-| B — legacy transcript | Segment text and timing without word-level data; verifies compatibility with older documents. |
-| C — editing sample | A timed transcript with several short paragraphs and a phrase suitable for partial-word formatting and three-word merge/split checks. |
-| D — stories | Two differently named stories with distinct segment selections and orders; additional disposable stories for the ten-story limit. |
-| E — long document | A representative long recording and transcript for scrolling, playback navigation and sustained editing. Record its actual size/duration instead of assuming a universal limit. |
+| A — timed interview | Two speakers, unassigned introduction, repeated words, punctuation and an audible pause between words. Note control audio positions. |
+| B — legacy transcript | Segment text and timing, without word-level data. |
+| C — editing sample | Timed short paragraphs for partial-word formatting and three-word merge/split checks. |
+| D — stories | Two named stories with different selections and orders; extra stories for the ten-story limit. |
+| E — long document | Representative long recording for sustained editing, seeking and scrolling. Record its size and duration. |
 
-Record the build, browser/OS, document type, access level and network condition for every run. Use owner/edit access for mutation checks and view-only access for the separate permissions regression. Include Safari and Chromium for media playback/download checks, and real mobile devices when mobile behavior is in scope.
+Record build, browser/OS, document type, access and network conditions. Edit as owner/editor; test view-only permissions separately. Include Safari and Chromium for playback/downloads, and real devices for mobile checks.
 
-**Priority:** P0 protects saved work or the integrity of delivered output; P1 covers core editing behavior; P2 covers secondary controls and limits. Priorities guide selection and are not defect severity ratings.
+**Priority:** P0 — saved work and output integrity; P1 — core editing; P2 — secondary controls and limits. Test priority is separate from defect severity.
 
 ## Editing and audio integrity
 
 | ID | Priority | Action and data | Expected outcome / observation |
 |---|---|---|---|
-| ED-01 | P0 | In classic editor, correct a word in fixture A, leave the field, wait for a confirmed successful save, then reload and reopen the document. | The correction persists. Unrelated text, speakers and timing match the baseline. A matching segment already present in the active story reflects the linked text correction. |
-| ED-02 | P1 | Focus a classic segment and leave it without editing; repeat on fixture B. Compare saved content before and after. | No content changes. A legacy segment gains no invented word-level data. Ignore unrelated network activity when determining whether content was rewritten. |
-| ED-03 | P0 | Edit several words in fixture B, save/reload, then attempt to open its beta-editor URL. | Edited text and original segment timing survive. The classic editor does not invent word timestamps. The beta entry is unavailable in normal navigation; a direct visit presents the compatibility guard and a route back. |
-| ED-04 | P0 | In the beta editor, remove spaces between three measured words in fixture C. Save/reload, then restore spaces at the original word boundaries. | Original measured boundaries, including pauses, are retained through the round trip. Compare baseline and final timing in the exported JSON as well as playback. No end time precedes its start time. |
-| ED-05 | P0 | Merge two words with a known pause; edit letters only inside the first word; split them again. | The untouched second word retains its measured timing. The edited span stays within its available audio bounds. Do not expect exact new internal timing where the recording was never measured at that boundary. |
-| ED-06 | P0 | Insert a new word between measured words, then delete a different original word. Save/reload and inspect playback and JSON. | Unaffected measured words retain their alignment. Newly typed words are represented as ungrounded/synthetic rather than given invented measured timing. Deleted content does not remain in the saved text. |
-| ED-07 | P1 | In beta editor, format half of one word and a later phrase; lengthen earlier text; save/reload. Include bold, highlight and color. | Formatting remains attached to the intended content and survives reopening; adjacent text is not accidentally styled. This checks editor persistence, not rich-format preservation in DOCX export. |
-| ED-08 | P1 | In fixture A, use F4 on a sentence. Use Ctrl+Space with an unchanged caret, then after moving the caret. Switch word/sentence highlighting during playback. | F4 plays the selected sentence range. Ctrl+Space toggles playback when the caret is unchanged and starts/seeks from the new caret position when moved. Highlighting follows the audio and does not alter content. |
-| ED-09 | P1 | In beta editor, press Backspace at the start of a block and Delete at the end of a block whose neighbour belongs to another speaker. Test ordinary text deletion within a block too. | Deleting across different-speaker boundaries does not silently merge their attribution. Ordinary in-block deletion remains usable. |
-| ED-10 | P1 | In fixture E, alternate typing, seeking, scrolling and playback; then save/reload. In beta editor, also undo and redo a small text correction. | Edits remain accurate; playback and navigation remain usable on the recorded device. Beta undo/redo restores the intended local change. Record response times and visible stalls; classic-editor undo is currently disabled and is not an expected feature here. |
+| ED-01 | P0 | Classic, A: correct a word, leave the field, confirm save, then reopen. | Correction persists in source and the matching active-story segment. Other text, speakers and timing match the baseline. |
+| ED-02 | P1 | Focus and leave a classic segment without editing; repeat on B. Compare saved content. | No content changes or invented word data. Distinguish content writes from unrelated network requests. |
+| ED-03 | P0 | Edit B, save/reload, then open its beta-editor URL. | Text and segment timing survive without invented word timestamps. Normal navigation hides beta; a direct visit shows the compatibility guard and link back. |
+| ED-04 | P0 | Beta, C: merge three measured words by deleting spaces. Save/reload, then restore spaces at the original boundaries. | JSON and playback retain the original boundaries and pauses. No end time precedes its start. |
+| ED-05 | P0 | Merge two words with a known pause; change letters in the first; split again. | Second word retains exact timing; edited span stays within available bounds. A new split without an original measurement can only be estimated. |
+| ED-06 | P0 | Insert a word between measured words; delete a different original word. Save/reload; inspect playback and JSON. | Untouched words retain alignment. Insertions are synthetic/ungrounded; deleted text is absent. |
+| ED-07 | P1 | Beta: format half a word and a later phrase using bold, highlight and color. Lengthen earlier text; save/reload. | Styling stays on the intended content, survives reopening and leaves neighbours unchanged. DOCX formatting is checked separately. |
+| ED-08 | P1 | A: press F4; use Ctrl+Space before and after moving the caret. Switch word/sentence highlighting during playback. | F4 plays the sentence. Ctrl+Space toggles playback with an unchanged caret and starts/seeks from a moved caret. Highlight follows audio without changing content. |
+| ED-09 | P1 | Beta: Backspace/Delete at boundaries between different-speaker blocks, then within a block. | Different-speaker blocks are not silently joined; ordinary deletion works. |
+| ED-10 | P1 | E: alternate typing, seeking, scrolling and playback; save/reload. In beta, undo/redo a correction. | Changes persist; playback/navigation stay usable. Beta undo/redo restores the change; classic undo is disabled. Record response times and stalls. |
 
 ## Speakers and story versions
 
 | ID | Priority | Action and data | Expected outcome / observation |
 |---|---|---|---|
-| ED-11 | P1 | Reassign the last live occurrence of speaker A to speaker B; reopen the speaker picker and reload. | The selected turn belongs to B. A remains available in the persistent speaker roster, allowing reassignment back. Other speakers and their turns are unchanged. |
-| ED-12 | P0 | Globally rename one speaker with multiple source occurrences and matching segments in the active story. Save/reload both. | Intended source and active-story occurrences use the new name; unrelated labels remain unchanged. Record inactive-story behavior separately—global propagation to every stored version is not assumed. |
-| ED-13 | P1 | Cycle speaker display modes, filter one speaker and highlight another; clear the controls and reload. Include an unassigned introduction. | Show-all/change-only/none changes label visibility appropriately. Filtering hides the selected speaker's turns; highlighting dims other turns. Display controls do not remove transcript content. Record assumption-badge behavior separately from editorial speaker names. |
-| ED-14 | P0 | Add noncontiguous source segments to a story, change their order, remove one segment, rename the story and reload. | The chosen content, order and name persist; removed story segments remain in the source. Story playback follows the assembled order. Confirm text edits separately because source and active-story text can be linked. |
-| ED-15 | P0 | Edit story A, immediately switch A→B→A, then reload both stories. Repeat with delayed save responses and clearly different content in A/B. | Each story retains its own latest successfully saved content and name. A's edits do not overwrite B. No successful-save claim is made until server persistence is checked. |
-| ED-16 | P0 | Start loading uncached story A on a slow connection, then select already cached story B before A completes. | B remains selected with B's content after the late A response arrives. The dropdown, visible text, playback target and subsequent save target agree. |
-| ED-17 | P0 | Delete the active story, accept confirmation, switch among remaining stories and reload. Then create a new story. | The deleted story stays deleted and is not recreated by an outgoing save. Remaining stories are intact. A newly created story starts empty and uses an available slot. |
-| ED-18 | P2 | Reach ten stories, attempt to add another, delete one and create a replacement. Also cancel a deletion. | No eleventh story is created through the UI. Deleting one frees a slot. Cancelling deletion preserves the story and its content. |
+| ED-11 | P1 | Reassign speaker A's last turn to B; reopen the picker and reload. | Turn belongs to B; A remains in the roster for reassignment back. Other turns are unchanged. |
+| ED-12 | P0 | Globally rename a speaker appearing repeatedly in source and active story. Save/reload both. | All intended occurrences use the new name; other labels stay unchanged. Check inactive versions separately; propagation to all stories is not established. |
+| ED-13 | P1 | With an unassigned intro, cycle speaker display modes, filter one speaker and highlight another. Clear controls; reload. | All/change-only/none controls labels; filtering hides selected turns; highlighting dims others. No text is deleted. Track assumption badges separately from assigned names. |
+| ED-14 | P0 | Add nonadjacent segments, reorder, remove one, rename story and reload. | Content, order and name persist; playback follows story order. Removed segments remain in source. Text edits can affect both source and active story. |
+| ED-15 | P0 | Edit A, immediately switch A→B→A, then reload both. Repeat with delayed saves and distinct story content. | Each story retains its own latest saved content and name; A does not overwrite B. Verify persisted data. |
+| ED-16 | P0 | Load uncached A slowly, then choose cached B before A finishes. | Late A response does not replace B. Selection, text, playback and save target all remain B. |
+| ED-17 | P0 | Delete active story, confirm, switch/reload remaining stories; create a new one. | Deleted story is not recreated by a pending save. Others stay intact; new story is empty and uses a free slot. |
+| ED-18 | P2 | Create ten stories; attempt an eleventh. Delete one and replace it. Also cancel a deletion. | UI enforces ten-story limit; deletion frees a slot; cancellation preserves content. |
 
 ## Save, recovery and restoration
 
 | ID | Priority | Action and data | Expected outcome / observation |
 |---|---|---|---|
-| ED-19 | P0 | Make distinct source and story edits, confirm their save responses, close/reopen and compare with the baseline and intended final state. | Both documents contain exactly the committed edits in their correct targets. A successful response alone is not the persistence oracle. |
-| ED-20 | P0 | On disposable data, edit then immediately reload/navigate away, hide the tab or switch mobile apps. Repeat after a confirmed save. Then repeat with a failed save followed by network recovery. | Confirmed saves survive reopening. For interrupted or failed saves, record what remains locally, what reaches the server and what the user is told. Offline recovery and guaranteed saving during app termination are not assumed; any loss is reported with exact timing and conditions. |
-| ED-21 | P0 | Edit a disposable source document. Choose Restore Original and cancel; then repeat and confirm. Reload and inspect source and stories. | Cancel changes nothing. Confirm restores the source backup and persists it. Document the effect on active and inactive stories against the agreed restoration contract rather than assuming they reset too. |
+| ED-19 | P0 | Make distinct source/story edits, confirm saves, then reopen and compare with baseline and intended result. | Each document contains exactly its committed edits. Verify contents, not only save responses. |
+| ED-20 | P0 | Edit, then immediately reload/navigate away, hide tab or switch mobile apps. Repeat after confirmed save, then with failed save and network recovery. | Confirmed saves survive. Record local/server state, messages and loss timing for interrupted saves. Offline and app-termination recovery need an agreed contract. |
+| ED-21 | P0 | Edit a test document. Cancel Restore Original, then confirm it. Reload source and stories. | Cancel changes nothing; confirm restores and persists source backup. Assess effects on active/inactive stories against agreed requirements. |
 
 ## Output verification
 
 | ID | Priority | Action and data | Expected outcome / observation |
 |---|---|---|---|
-| ED-22 | P0 | Export source and a differently ordered story to TXT, DOCX and JSON; copy each to the clipboard. Open the actual files and paste copied text into a plain-text editor. | Each output contains the correct target and segment order, including recent committed corrections. TXT/DOCX group speaker turns as implemented; JSON preserves available timing/metadata. DOCX opens correctly; editor styling is not assumed to carry into DOCX. |
-| ED-23 | P0 | Make a text edit and leave edit mode so it reaches the editor's current state; export SRT before autosave completes. Repeat with the subtitle service unavailable. | Default export reflects the current edited content and produces readable cues with valid timestamps. When the service fails, verify the legacy fallback separately; its segment-based cue layout may differ. Check actual playback alignment and record the path used. |
-| ED-24 | P1 | Double-click SRT and REAPER export while each is in progress; repeat after completion and with an export failure. | Repeated clicks on the same in-flight action do not start unintended duplicate work. Loading controls resolve, and the action can be retried. Verify the file, not just the loading indicator. |
-| ED-25 | P0 | Export source and reordered story as REAPER ZIPs. Extract them and open each project in REAPER with its bundled audio. | Both project and audio files are usable; references resolve; the intended content, segment timing and story order are represented. Check the media contents and playback, including the Safari download path, rather than trusting the archive extension. |
+| ED-22 | P0 | Export source and differently ordered story to TXT/DOCX/JSON; copy their text. Open files and paste clipboard text into a plain-text editor. | Correct content, corrections and order. TXT/DOCX group speaker turns; JSON retains timing/metadata. DOCX opens; rich editor formatting is not carried into this export. |
+| ED-23 | P0 | Edit text, leave edit mode, export SRT before autosave. Repeat with subtitle service unavailable. | Output includes current edits with valid, aligned cues. Check default and fallback paths separately; fallback uses segment-based cues and may differ. |
+| ED-24 | P1 | Double-click SRT/REAPER export while running; retry after completion and failure. | No duplicate work for the same running action. Loading ends and retry works. Check downloaded files. |
+| ED-25 | P0 | Export source and reordered story as REAPER ZIPs. Extract and open projects with bundled audio, including downloads from Safari. | Audio references resolve. Project/audio are usable, with correct content, timing and story order. Listen to the result. |
 
-## Contract questions to resolve before execution
+## Questions before execution
 
-- **Subtitle rules:** agree the intended reading-speed, line-length, language and timing rules for backend-generated cues. The web export path alone cannot establish the complete transcription/subtitle-service contract. Treat fallback output as a separate mode.
-- **Stories and shared edits:** specify whether speaker/text changes should affect inactive story versions and whether restoring the source should change any story. Current active-story coupling must not be confused with a promise of global synchronisation.
-- **Save failures:** agree what the user must see, how retries should work and what constitutes acceptable recovery after navigation, disconnection or app termination. Do not award a pass based on an unspecified recovery promise.
-- **Speaker suggestions:** distinguish AI-generated assumptions from user-assigned labels. Confirm when badges should persist, change or disappear; behavior is not uniform across every current edit path.
-- **Timing and usability tolerances:** define acceptable alignment error and response-time targets for the chosen devices and document sizes. Exact recovery of existing measured boundaries is different from estimating a new split inside an unmeasured span.
+- **Subtitles:** confirm reading speed, line length, language and timing rules with the backend team; the web export code does not define them all. Test fallback separately.
+- **Shared edits:** should renaming/editing affect inactive stories? Should restoring source reset any story?
+- **Save failures:** agree messages, retries and recovery after navigation, disconnection or app termination.
+- **Speaker suggestions:** when should AI assumption badges persist, change or disappear? Current edit paths differ.
+- **Tolerances:** agree alignment and response-time limits by device/document size. Existing measured boundaries can be preserved exactly; new unmeasured splits require estimates.
 
-For execution, attach the fixture identity, relevant before/after evidence, observed result and any defect link to each selected case. Keep unexplored cases marked **Not run** and unresolved contracts **Blocked / clarification required** in the [release record](regression-and-release.md).
+In the [release record](regression-and-release.md), attach fixture IDs, before/after evidence, results and defects. Mark untested cases **Not run** and unresolved requirements **Blocked / clarification required**.

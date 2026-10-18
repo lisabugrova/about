@@ -1,55 +1,38 @@
-# Defect Reporting — Worked Example
+# Example defect report
 
-**Artifact type:** illustrative example. The scenario below is fictional and is not a reported Audiodoc defect or a claim of a defect discovered during employment.
+Fictional example, not a reported Audiodoc defect.
 
-## Example: a transcript correction disappears after reload
-
-| Field | Example value |
+| Field | Value |
 | --- | --- |
 | ID | DEMO-EDIT-01 |
-| Summary | Saved correction reverts after reopening a transcript |
-| Build / environment | Fictional training build DEMO-1; Chrome desktop; synthetic account and media |
-| Feature | Transcript edit → save → reload |
-| Impact | A user can believe a correction was saved and later export incorrect text |
+| Summary | Saved correction disappears after reopening a transcript |
+| Build / environment | DEMO-1; Chrome desktop; synthetic account and media |
+| Feature | Edit → save → reload |
+| Impact | The user may trust the save confirmation and export incorrect text |
 | Proposed severity | High if reproducible in a supported workflow: loss of user work |
-| Proposed priority | Release blocker for a change affecting save behavior; confirm affected scope with the team |
-| Related check | Editor persistence and corresponding regression coverage |
+| Proposed priority | Block a release that changes saving; confirm affected scope with the team |
+| Related check | Editor persistence and regression checks |
 
-### Preconditions
+## Reproduce
 
-A synthetic transcript contains “We meet on Monday.” The signed-in owner can edit it. Start with an online browser, completed initial load and no unsaved edits.
-
-### Reproduction
+The transcript contains “We meet on Monday.” Its owner is signed in and can edit. The browser is online, loading has finished and there are no unsaved changes.
 
 1. Replace “Monday” with “Tuesday”.
-2. Wait until the documented save mechanism finishes; record visible status and the relevant response.
-3. Reload the page and reopen the same document.
-4. Inspect the edited sentence.
+2. Wait for the documented save mechanism to finish; record its visible status and response.
+3. Reload and reopen the same document.
+4. Inspect the sentence.
 
-### Expected
+| Expected | Actual in this example |
+| --- | --- |
+| “We meet on Tuesday.” remains after reload. | “We meet on Monday.” returns despite the earlier save confirmation. |
 
-The saved sentence is “We meet on Tuesday.” Reloading does not restore the earlier value.
+## Evidence and follow-up
 
-### Hypothetical actual result
+For a real report, attach a recording of edit → save → reload, the test-document ID, exact build/browser, timestamps, reproduction rate and relevant responses. Remove private data.
 
-The editor returns to “We meet on Monday.” The example assumes the UI previously indicated successful saving.
-
-### Evidence packet
-
-For a real report, attach a short sanitized before/edit/save/reload recording, document fixture ID, exact build/browser, timestamps, reproduction rate and relevant redacted response details. This fictional example intentionally contains no invented screenshot, request log or execution count.
-
-### Investigation and fix verification
-
-- Compare visible save acknowledgement with the persisted value and any delayed load.
-- Check whether the result is specific to one editor, document generation or edit type.
-- After a fix, repeat the exact reproduction and test adjacent punctuation, speaker changes and navigation.
-- Record the retest build and outcome; close only after the changed behavior is verified.
-
-## Reusable report structure
-
-**Identity and environment → impact → preconditions/data → steps → expected → actual → evidence → reproducibility → fix verification.**
-
-A report should let another person reproduce the behavior without guessing. Keep severity (impact) separate from priority (when to address it). Unknown cause is acceptable; an unsupported diagnosis is not necessary.
+- Compare the save acknowledgement with the stored value; check for a delayed load.
+- Check whether the issue affects a particular editor, document generation or edit type. Leave the cause open until verified.
+- After a fix, repeat these steps and check punctuation, speaker changes and navigation.
+- Record the retest build and result. Close the issue only after verifying the fix.
 
 [Regression](regression-and-release.md) · [Design index](test-design-workbook.md) · [Profile](../README.md)
-

@@ -1,53 +1,29 @@
-# Audiodoc Studio — Manual QA Case Study
+# Audiodoc Studio: upload and balance testing
 
-**Project:** audio/video transcription and editing web application  
-**Role represented:** manual QA  
-**Focus of the original work samples:** upload validation and processing-time balance
+Audiodoc Studio transcribes audio and video. Users can check the transcript against the recording, edit it, assemble stories and export the result. Processing is paid for with a time balance.
 
-## Product context
+## The testing problem
 
-Audiodoc Studio turns uploaded media into a transcript that a user can review alongside audio, edit, organize into stories and export. The application also includes accounts, projects, document-sharing permissions, processing-time purchases and transaction history.
+File validation and balance validation overlap. A file can be supported and within the size limit but still be too long for the available balance. A test needs to isolate the rule it is checking.
 
-Quality involves more than a successful upload. The user needs the right document, usable text, recoverable edits, appropriate access and understandable processing costs.
+The original work samples cover selection through the file picker and drag-and-drop, queue limits, file size, duration, balance, processing readiness and clearing the selection.
 
-## Selected contribution
+## Three examples
 
-The upload and balance work samples turn interface rules into a structured test basis:
+**File count.** Prepare eleven short files and give the account enough processing time for all of them. Check nine, ten and eleven files. This keeps the balance gate from obscuring the ten-file limit.
 
-- file picker and drag-and-drop paths;
-- the maximum selected-file count and per-file size;
-- the relationship between media duration and available processing time;
-- readiness, processing and access to results;
-- clearing the queue and re-evaluating eligibility.
+**File size.** Check immediately below, at and above the limit. The original design identified uncertainty about MB versus MiB. Source review for the expanded reference resolved the current threshold: 1,782,579,200 bytes, inclusive.
 
-Concrete files, balances and queue states make the checks repeatable. Requirement IDs connect the rule to the relevant tests.
+**Balance.** A 10-second video at zero balance should remain selectable but cannot proceed to normal processing. The expected insufficient-balance message is a successful validation result. The 9/10/11-second balance checks test the eligibility boundary.
 
-## Decisions illustrated by the work
+[Upload design](audiodoc-studio-file-upload.md) · [Balance design](audiodoc-studio-balance-validation.md)
 
-| Decision | Why it matters |
-| --- | --- |
-| Provide sufficient balance when checking file-count limits | Prevents a balance error from hiding a queue-limit failure. |
-| Check immediately below, at and above a boundary | Exposes off-by-one behavior and unit interpretation. |
-| Treat expected insufficient-balance feedback as valid behavior | Avoids reporting correct business validation as a defect. |
-| Separate observed readiness from reported completion | Keeps the strength of evidence visible to a reviewer. |
-| Identify untested transitions and ambiguous rules | Gives the next test cycle a concrete starting point. |
+## Recorded results
 
-## Recorded outcomes
+The original report describes the zero-balance case above and a 26:16 video with one hour available. In the second case, the ready state was described from a screenshot; successful processing, download and editor access were reported by the tester.
 
-The existing execution record describes two scenarios:
+Build, browser, date and screenshot attachments were not included. The [execution record](test-execution-report.md) retains that distinction.
 
-1. A 10-second video with zero available time displayed insufficient balance and a 10-second shortage; the normal upload action was absent.
-2. A 26:16 video with one hour available displayed readiness; the tester reported successful processing, a leave-page warning, download and editor access.
+The wider [reference suite](test-design-workbook.md) adds editing, access, payments and other product areas. Its authorship and scope are explained there.
 
-The original record does not include build, browser, date or screenshot attachments. These outcomes remain recorded at their original evidence level; the reference designs below do not add historical test results.
-
-[Read the execution record](test-execution-report.md)
-
-## Broader product reference
-
-The repository now provides a structured reference for covering the complete user journey: account and consent → upload and processing → editing and saving → export and sharing → balance and history.
-
-This reference is based on the reviewed product snapshot and is separate from the historical execution record. It illustrates how to expand a feature-focused test suite without treating unexecuted checks as passes.
-
-[Product coverage](product-coverage.md) · [Test-design index](test-design-workbook.md) · [Profile](../README.md)
-
+[Profile](../README.md)

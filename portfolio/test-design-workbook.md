@@ -1,41 +1,36 @@
-# QA Portfolio — Reading Guide
+# QA portfolio
 
-## Artifact types
+[CV](../CV.md) · [Audiodoc case study](audiodoc-studio-case-study.md)
 
-The original portfolio supplies the upload/balance work samples and the recorded results. The expanded and revised reference designs were prepared collaboratively with the project owner and AI assistance, using a review of the product source. They are not presented as Elizaveta's independently authored historical work. The illustrative defect and release examples are fictional.
+## Materials
 
-| Type | Meaning | Where |
-| --- | --- | --- |
-| Recorded execution | Results retained from the existing portfolio, with original evidence limitations | [Execution record](test-execution-report.md) |
-| Reference test design | Prepared checks, fixtures, expectations and risk priorities; no execution result implied | Feature designs and coverage map |
-| Illustrative example | A clearly labeled fictional scenario showing reporting technique | Worked defect and release examples |
-| Process reference | A reusable way to organize QA work | Regression selection and handover |
-
-**Reference baseline:** Audiodoc Studio source snapshot reviewed on 18 October 2026. A deployed build may differ. Confirm the target build and supported environments before executing. The reference covers the reviewed application's user-facing domains, not every possible input or the internals of its separate transcription service.
-
-## Reading paths
-
-- **Recruiter:** [CV](../CV.md) → [case study](audiodoc-studio-case-study.md).
-- **QA reviewer:** [coverage map](product-coverage.md) → [upload](audiodoc-studio-file-upload.md) → [balance](audiodoc-studio-balance-validation.md) → [execution record](test-execution-report.md).
-- **Delivery team:** [regression and release](regression-and-release.md) → [defect example](defect-report-template.md) → [handover](qa-handover-playbook.md).
-
-## Coverage and techniques
-
-| Artifact | Main techniques |
+| Material | Contents |
 | --- | --- |
-| [Upload and media validation](audiodoc-studio-file-upload.md) | Equivalence classes, exact boundaries, cumulative selection, input-path equivalence |
-| [Balance and processing](audiodoc-studio-balance-validation.md) | Decision rules, duration rounding, aggregated demand, states and recovery |
-| [Editor and output](editor-and-output.md) | Data persistence, ordering, audio/text correspondence, compatibility between document generations |
-| [Accounts, payments and access](accounts-payments-and-access.md) | Role matrices, payment states, consent rules, account isolation |
-| [Compatibility and exploration](compatibility-and-exploration.md) | Environment sampling, keyboard checks, interruptions, exploratory charters |
+| [Coverage map](product-coverage.md) | Product areas, risks and test data |
+| [Upload tests](audiodoc-studio-file-upload.md) | Selection, queue limits, file size and media duration |
+| [Balance tests](audiodoc-studio-balance-validation.md) | Eligibility, rounding, combined duration, retry and accounting |
+| [Editor and exports](editor-and-output.md) | Text, audio alignment, speakers, stories, saving and output files |
+| [Accounts, payments and access](accounts-payments-and-access.md) | Authentication, consent, purchases, sharing, projects and referrals |
+| [Compatibility and exploration](compatibility-and-exploration.md) | Browsers, devices, keyboard access, languages and interruptions |
+| [Execution record](test-execution-report.md) | Two scenarios retained from the original portfolio |
+| [Regression and release](regression-and-release.md) | Selecting checks and a worked release report |
+| [Defect report](defect-report-template.md) | A worked reporting example |
+| [QA handover](qa-handover-playbook.md) | Setup, shared testing and transfer of responsibility |
 
-## Common execution contract
+## About these materials
 
-Every run identifies the build, environment, date, fixture and account role. Record **Passed**, **Failed**, **Blocked** or **Not run** for each selected case; a design document alone has no execution status.
+The upload/balance samples and two execution records came from Elizaveta's original portfolio. The expanded designs were prepared with the project owner and AI assistance after reviewing the application source on **18 October 2026**. They are reference material, not independently authored historical work or completed test runs.
 
-A pass requires the stated expectation to be checked. Separate a verified intermediate state from an unverified end-to-end result. For defects, retain reproduction steps and sanitized evidence; for blocked checks, name the missing condition and its release impact.
+The defect and release examples are fictional and labeled accordingly. The process documents describe how to organize the work.
 
-Use authorized test accounts and synthetic or approved media. Payment cases use a provider sandbox or an explicitly approved test mechanism. Never put credentials, payment details, private audio or personal transcripts into portfolio evidence.
+The suite covers the reviewed application's main user-facing areas. It does not establish coverage of every input or the separate transcription service. A deployed build may differ from the reviewed source.
+
+## Running the checks
+
+Record the build, browser/device, date, fixture and account role. Use **Passed**, **Failed**, **Blocked** or **Not run**. A pass requires checking the expected result; reaching an intermediate screen does not establish end-to-end success.
+
+Attach reproduction steps and sanitized evidence to defects. For a blocked check, name the missing prerequisite and its effect on the release decision.
+
+Use test accounts, synthetic or approved media, and a payment sandbox. Keep credentials, payment details and customer recordings out of the portfolio.
 
 [Profile](../README.md)
-

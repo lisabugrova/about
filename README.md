@@ -1,50 +1,29 @@
 # Elizaveta Bugrova
-### Manual QA Engineer · Web Applications · Regression & Release Verification
 
-[English](README.md) · [Русский](ru/README.md)  
-Tbilisi, Georgia · [Telegram](https://t.me/lizavetamirr) · [GitHub](https://github.com/lisabugrova)
+**Manual QA engineer** · Tbilisi, Georgia  
+[Telegram](https://t.me/lizavetamirr) · [GitHub](https://github.com/lisabugrova) · [Русский](ru/README.md)
 
-I am a QA engineer with commercial experience since 2024. I work with functional testing, regression, release verification, test documentation and knowledge transfer. My focus is making product behavior understandable and testable: clarify the rule, identify the risk, check the user journey and communicate the result.
+I've worked in QA since 2024, testing web applications. My work includes functional and regression testing, release checks, test documentation and knowledge transfer.
 
-My selected project is **Audiodoc Studio**, a web application for transcribing audio and video and working with the resulting text. My portfolio begins with upload and processing-time validation, then develops a broader QA reference for the product's editing, access and payment workflows.
+## Audiodoc Studio
 
-**[Read my CV](CV.md)** · **[Audiodoc Studio case study](portfolio/audiodoc-studio-case-study.md)** · **[Explore the QA portfolio](portfolio/test-design-workbook.md)**
+Audiodoc Studio transcribes audio and video and lets users edit the text alongside the recording. The work samples here focus on file uploads and processing-time balance.
 
-## What I bring to a team
+A few details from the test design:
 
-- **Structured test design:** equivalence classes, boundaries, decision rules and state transitions, with concrete data and observable expectations.
-- **Functional and regression testing:** user journeys, negative paths, change impact and risk-based selection.
-- **Clear QA communication:** reproducible steps, expected versus actual behavior, coverage gaps and release risks.
-- **Reusable documentation:** test cases, execution records, defect reporting and a practical handover structure.
+- To check the ten-file limit, use enough balance for all files. Otherwise, a balance error can hide a queue-limit problem.
+- Check the exact file-size boundary, not just a file described as “large”.
+- Check that a file can be selected with zero balance while processing remains blocked.
 
-## Selected project experience
+[Read the Audiodoc case study](portfolio/audiodoc-studio-case-study.md)
 
-**Audiodoc Studio — Manual QA**
+## Work and references
 
-- Translate upload and processing-time rules into positive, negative and boundary checks.
-- Separate file validation, queue limits and available balance so that each check targets the intended rule.
-- Document insufficient-balance and sufficient-balance processing scenarios, distinguishing observed UI from reported completion.
-- Organize requirements, test cases and regression priorities into connected, reusable materials.
+- **[CV](CV.md)** — experience and skills.
+- **[Upload tests](portfolio/audiodoc-studio-file-upload.md)** and **[balance tests](portfolio/audiodoc-studio-balance-validation.md)** — rules, data and expected results.
+- **[Execution record](portfolio/test-execution-report.md)** — two examples from the original portfolio.
+- **[Full portfolio](portfolio/test-design-workbook.md)** — editing, exports, payments, access, regression and handover references.
 
-[Read the case study →](portfolio/audiodoc-studio-case-study.md)
+The extended suite is a collaborative reference; [the portfolio notes explain its authorship and scope](portfolio/test-design-workbook.md#about-these-materials).
 
-## Portfolio
-
-| Area | What to inspect |
-| --- | --- |
-| Product understanding | [Product coverage and risk map](portfolio/product-coverage.md) |
-| Uploads and media validation | [File selection, queue limits, exact size boundaries and duration discovery](portfolio/audiodoc-studio-file-upload.md) |
-| Balance and processing | [Eligibility decisions, batch balance, processing, retry and reconciliation](portfolio/audiodoc-studio-balance-validation.md) |
-| Transcript work | [Editing, playback, speakers, stories, saving and exports](portfolio/editor-and-output.md) |
-| Business workflows | [Accounts, consent, payments, projects and sharing](portfolio/accounts-payments-and-access.md) |
-| User environment | [Compatibility, localization, accessibility and exploratory charters](portfolio/compatibility-and-exploration.md) |
-| Recorded results | [Existing upload execution record](portfolio/test-execution-report.md) |
-| Delivery decisions | [Regression selection and worked release assessment](portfolio/regression-and-release.md) |
-| Collaboration | [Worked defect report](portfolio/defect-report-template.md) · [QA handover](portfolio/qa-handover-playbook.md) |
-
-The portfolio distinguishes **recorded execution**, **reference test design** and **illustrative examples**. The expanded reference suite was prepared collaboratively with the project owner and AI assistance; it is separate from the original work samples and recorded results.
-
-## Career focus
-
-Manual QA roles in product engineering teams, including international organizations, with responsibility for functional quality, regression and clear release reporting.
-
+I'm interested in manual QA roles in product engineering teams, including international teams.
