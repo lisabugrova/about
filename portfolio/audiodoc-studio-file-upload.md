@@ -1,116 +1,51 @@
-# Audiodoc Studio — File Upload Test Design
+# Audiodoc Studio — Upload and Media Validation
 
-**Feature:** Your documents → Upload files  
-**Test type:** Functional, positive and negative  
-**Techniques:** Equivalence Partitioning (EP), Boundary Value Analysis (BVA), input-path testing  
-**Objective:** Verify file selection, queue validation, upload limits and reset behavior.
+**Artifact type:** reference test design. Original test IDs TC-UPL-001–006 are retained; expanded checks are not recorded executions.
 
 ## Test basis
 
-| ID | Requirement / interface rule |
+| Rule | Expected contract |
 | --- | --- |
-| UP-01 | Users can select files using the file picker or drag files into the upload area. |
-| UP-02 | The upload area states: **Maximum 10 files**. |
-| UP-03 | The upload area states: **Up to 1700 MB each**. |
-| UP-04 | Selected files display their name, duration and validation state. |
-| UP-05 | The interface provides **Clear and start over**. |
-| UP-06 | Starting an upload is controlled by available processing time; see [Balance Validation Test Design](audiodoc-studio-balance-validation.md). |
+| UP-01 | File picker and drag-and-drop support the same selection rules. |
+| UP-02 | The complete selected queue contains at most ten files. |
+| UP-03 | Per-file limit is **1,782,579,200 bytes**, inclusive: 1700 MiB despite the interface label “MB”. |
+| UP-04 | Supported extensions are checked case-insensitively; extension acceptance alone does not prove valid media content. |
+| UP-05 | Files expose identity, duration/validation and processing state; the queue can be cleared. |
+| UP-06 | Known duration is rounded upward to seconds; metadata failure can use a fallback/probe path. |
+| UP-07 | Processing eligibility depends on available time and combined demand; see the balance design. |
 
-## Test-data preparation
+## Preparation
 
-- Use supported, non-sensitive media files. Confirm supported formats before execution.
-- Prepare **9, 10 and 11 files**, named `count_01.mp4` through `count_11.mp4`, each **10 seconds long and approximately 2 MB**, and set the available time to **1 hour (3600 s)**. The largest group requires 110 seconds of media time; this isolates the count limit from the balance gate.
-- Prepare size-boundary fixtures `size_1699999999B.mp4` (**1,699,999,999 bytes**), `size_1700000000B.mp4` (**1,700,000,000 bytes**) and `size_1700000001B.mp4` (**1,700,000,001 bytes**), each valid MP4 of **26 minutes 16 seconds**; set balance to **1 hour**. These numbers use **decimal MB** and must be replaced by the binary set listed below if the specification defines MiB.
-- Record the initial document count and reset the queue between independent scenarios.
-- For drag-and-drop checks, use a supported desktop browser and a local file.
+Use an authorized account and disposable media. Set one hour of available time for small selection checks. Prepare eleven distinct 10-second files and verify their names and duration. Reset the queue between independent tests.
 
-## Equivalence classes
+For size tests use **valid, independently inspectable** media at 1,782,579,199 / 1,782,579,200 / 1,782,579,201 bytes. Retain a fixture manifest with exact bytes and duration. Do not rename or truncate random bytes and call the result a valid MP4. If valid boundary fixtures are unavailable, mark the media-path check blocked; a mocked File object tests only the client boundary, not decoding or end-to-end processing.
 
-| Input | Valid / relevant class | Invalid / alternative class |
-| --- | --- | --- |
-| Number of files | 1–10 | 11+ |
-| Size per file | Within stated maximum | Above stated maximum |
-| Input path | File picker | Drag and drop (alternative supported path) |
-| Current queue | Empty | Contains selected files |
+## Cases
 
-## Boundary values
+| ID | Priority | Action / data | Expected result |
+| --- | --- | --- | --- |
+| TC-UPL-001 | P0 | Choose valid 26:16 MP4 with 3600 s balance. | One intended file, correct duration, eligible state and start action. |
+| TC-UPL-002 | P1 | Drag the same file from a desktop file manager into an empty queue. | Same validation as picker; one row for this one selection. |
+| TC-UPL-003 | P1 | Select ten distinct 10-second files together. | Ten accepted rows; sufficient balance does not obscure the count check. |
+| TC-UPL-004 | P1 | Select eleven distinct valid files together. | At most ten accepted; additional file rejected with count feedback. Verify which ten were retained. |
+| TC-UPL-005 | P1 | Independently select each exact-size fixture below/at/above the binary limit. | Below and equal satisfy size validation; one byte above is rejected. Decoding and balance remain separate checks. |
+| TC-UPL-006 | P1 | Select valid files, then use Clear and start over. | Queue returns to initial state; no stale row or start action; subsequent selection works. |
+| TC-UPL-007 | P1 | Add six files, then five distinct files. | Queue stops at ten across both selections; accepted rows remain identifiable. |
+| TC-UPL-008 | P1 | At ten files, try picker and drop; remove one through the available control and add a replacement. | Neither input path exceeds ten; removal frees one slot. |
+| TC-UPL-009 | P1 | Select representative MP3/WAV/M4A/FLAC and MP4/MOV/WEBM; repeat with uppercase extensions. | Allowlisted names are selectable; record actual metadata/processing support per fixture, without extrapolating to every codec. |
+| TC-UPL-010 | P1 | Mix a valid file, unsupported extension and oversized file. | Invalid inputs receive appropriate feedback; valid accepted input remains usable; count reflects accepted rows. |
+| TC-UPL-011 | P1 | Choose malformed content with an allowed extension and a zero-byte file. | No crash or false completed result. Metadata/probe/processing failure is explicit and recoverable; verify agreed treatment of invalid duration. |
+| TC-UPL-012 | P1 | Use a verified media fixture whose browser metadata fails, including an appropriate M4A/MP4 case. | Fallback/probe resolves duration or reports a failure; unknown duration is not silently treated as free processing. |
+| TC-UPL-013 | P1 | Select a slow-metadata file, clear immediately, then select another. | Late completion does not modify the new selection or recreate a removed row. |
+| TC-UPL-014 | P1 | Select two different files with the same name; also reselect the identical file. | Rows/states remain attached to the correct file. Confirm the product's duplicate-selection policy before classifying intentional duplicates as defects. |
+| TC-UPL-015 | P2 | Use long names, Cyrillic, spaces and punctuation. | Filename remains understandable; no broken selection or inaccessible controls. |
+| TC-UPL-016 | P1 | Choose explicit language, diarization/verbatim options and an available project; submit a small batch. | The chosen settings and destination apply to the intended files; verify resulting document configuration. |
 
-| Parameter | Values to test | Purpose |
-| --- | --- | --- |
-| File count | 0, 1, 9, 10, 11 | Empty input and 10-file limit |
-| File size (decimal-MB test set) | 1,699,999,999; 1,700,000,000; 1,700,000,001 bytes | At/around the 1700 MB boundary |
+## Analysis notes
 
-**Test parameters:** 10- and 11-file selections; maximum **1700 MB** per file. Decimal-MB boundary values are listed above; for **1700 MiB** use **1,782,579,199 / 1,782,579,200 / 1,782,579,201 bytes**..
+The lower file-count boundary includes an empty queue and a single file: empty cannot begin useful processing, while one eligible file can. For cumulative limits, test both one selection and repeated additions.
 
-## Test cases
+A selection test is not a codec-compatibility result. Observe metadata, transfer, processing and final output as distinct stages. Compare the displayed size label with the implemented threshold and agree whether the wording should change; the binary threshold is the current reference, not an invented decimal requirement.
 
-### TC-UPL-001 — Select a valid video using the file picker
+[Balance and processing](audiodoc-studio-balance-validation.md) · [Coverage](product-coverage.md) · [Profile](../README.md)
 
-**Preconditions / test data:** Signed-in user; available processing time **1 hour (3600 s)**; empty upload queue; supported `sample_video_26m16s.mp4`, duration **00:26:16 (1576 s)**.
-
-1. Open **Your documents**.
-2. Click the **Upload files** area.
-3. Select the video.
-4. Inspect the selected-file row.
-
-**Expected result:** The selected video appears with its duration; when its duration is covered by available processing time and other constraints, **Ready to upload!** and **Start upload!** are displayed.
-
-### TC-UPL-002 — Select a file via drag-and-drop
-
-**Preconditions / test data:** Signed-in user; **1 hour (3600 s)** available; empty queue; supported `sample_video_26m16s.mp4` (**00:26:16**); desktop browser and OS file manager support dragging files.
-
-1. Drag a supported file from the OS file manager into the upload zone.
-2. Release it over the upload area.
-3. Inspect the queue and validation state.
-
-**Expected result:** File selection and validation follow the same rules as file-picker selection; the file appears in the queue without unintended duplicate entries.
-
-### TC-UPL-003 — Accept a selection at the file-count limit
-
-**Preconditions / test data:** Available processing time **1 hour (3600 s)**; empty queue; **`count_01.mp4`–`count_10.mp4`**, each **10 s**, approximately **2 MB** and of a supported format.
-
-1. Select **`count_01.mp4`–`count_10.mp4`** (exactly **10 files**).
-2. Check the number of queued files and any validation messages.
-
-**Expected result:** The advertised 10-file limit is not exceeded. Ten otherwise eligible files can be selected, subject to confirmation of the limit's scope and other restrictions.
-
-### TC-UPL-004 — Reject an over-limit file count
-
-**Preconditions / test data:** Available processing time **1 hour (3600 s)**; empty queue; **`count_01.mp4`–`count_11.mp4`**, each **10 s** and approximately **2 MB**.
-
-1. Select **`count_01.mp4`–`count_11.mp4`** (exactly **11 files**) in one operation.
-2. Inspect the queue and feedback.
-
-**Expected result:** No more than the permitted maximum is accepted. The handling policy (reject all or accept up to 10) must match the agreed requirement.
-
-### TC-UPL-005 — Validate the per-file size boundary
-
-**Preconditions / test data:** Available processing time **1 hour (3600 s)**; empty queue; valid **26:16** MP4 files of **1,699,999,999**, **1,700,000,000** and **1,700,000,001 bytes**. First confirm the limit means decimal **1700 MB**; if not, use the explicit MiB equivalents in the boundary table. Prepare usable files without corrupting their media container.
-
-1. Select **`size_1699999999B.mp4`**, size **1,699,999,999 bytes**.
-2. Clear the queue; select **`size_1700000000B.mp4`**, size **1,700,000,000 bytes**.
-3. Clear the queue; select **`size_1700000001B.mp4`**, size **1,700,000,001 bytes**.
-
-**Expected result:** Under a confirmed **decimal 1700 MB** limit, the first two sizes satisfy the size restriction; the **1,700,000,001-byte** file is over limit. Other validation rules (format and balance) must also be satisfied.
-
-### TC-UPL-006 — Clear the selected-file queue
-
-**Preconditions / test data:** Available processing time **1 hour (3600 s)**; selected `sample_video_10s.mp4` (**10 s**, supported format); **Clear and start over** visible.
-
-1. Click **Clear and start over**.
-2. Inspect the file queue and available actions.
-
-**Expected result:** Selected-file entries are cleared and the upload form returns to its initial selection state.
-
-## Requirements traceability
-
-| Requirement | Test cases |
-| --- | --- |
-| UP-01 | TC-UPL-001, TC-UPL-002 |
-| UP-02 | TC-UPL-003, TC-UPL-004 |
-| UP-03 | TC-UPL-005 |
-| UP-04 | TC-UPL-001, TC-UPL-002 |
-| UP-05 | TC-UPL-006 |
-| UP-06 | [Balance Validation Test Design](audiodoc-studio-balance-validation.md) |
-
-[← Test design overview](test-design-workbook.md) · [← Portfolio](../README.md)

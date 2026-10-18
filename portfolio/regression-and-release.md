@@ -1,62 +1,60 @@
-# Audiodoc Studio — Regression Test Selection & Release Summary
+# Regression Selection and Release Assessment
 
-**Area:** File upload, available processing time, processing results  
-**Regression target:** Changes to time-balance validation, selected-file queue or upload/processing flow  
-**Approach:** Change impact analysis + risk-based selection.
+**Artifact type:** process reference with a clearly labeled illustrative release example.
 
-## Impact analysis
+## Select by change impact
 
-| Affected component | Potential regression risk | Test coverage |
+| Change | Essential checks | Adjacent checks |
 | --- | --- | --- |
-| Available-time validation | User can start without enough time, or valid upload is blocked | TC-BAL-001, TC-BAL-002, TC-BAL-003 |
-| Selected-file queue | Invalid state or stale validation after selection/removal | TC-UPL-001, TC-UPL-006 |
-| Upload entry methods | Validation bypass through drag-and-drop | TC-UPL-002, TC-BAL-001 variant |
-| File limits | Accepting more than 10 files or file larger than 1700 MB | TC-UPL-003, TC-UPL-004, TC-UPL-005 |
-| Processing lifecycle | Stuck state, missing warning or result actions | TC-BAL-002 |
-| Balance update | UI does not re-evaluate an already selected file | TC-BAL-004 |
+| Upload or duration handling | Picker/drop, cumulative count, size boundary, metadata/probe | Balance rounding, batch behavior, retry |
+| Balance or payment | Below/equal/above eligibility; confirmed credit; result/charge reconciliation | History, pending state, repeated notification, multiple tabs |
+| Transcript save or conversion | Edit → save → reload; original/edited content | Word timing, speaker metadata, old/current documents, exports |
+| Speaker/story behavior | Rename/reassign/filter; story order and playback | Save/reload, source/story relationship, exports |
+| Auth/consent | Sign-in/recovery, existing work, required/optional choices | Sharing roles, expiry, language and redirects |
+| Sharing/project change | Owner/view/edit/denied; grouping and persistence | Direct links, revoked access, deletion/history |
+| UI/localization | Changed controls, empty/loading/error states | Keyboard, narrow screen, translated units and feedback |
 
-## Prioritized regression checks
+## Minimum release thread
 
-| Priority | Scenario | Selection rationale |
-| --- | --- | --- |
-| P0 | Balance 0 s, video 10 s: visible error and no upload action | Enforces a core business restriction |
-| P0 | Balance 1 h, video 26:16: upload and result | Ensures main user journey remains available |
-| P0 | Verify processing result can be downloaded and opened in editor | Core output delivery |
-| P1 | 10-second video with balances **9 s / 10 s / 11 s** | Boundary and rounding risk |
-| P1 | Both picker and drag-and-drop apply the same eligibility checks | Alternate entry-point risk |
-| P1 | `count_01.mp4`–`count_11.mp4` (**11 × 10 s**, balance 3600 s); size **1,700,000,001 B** (decimal-MB assumption) | Enforce advertised upload constraints |
-| P1 | Selected **10 s** video, balance changed **0 s → 3600 s** | Stale state risk |
-| P2 | With balance 3600 s, select **10 s** MP4, clear, then select **26:16** MP4 | Recovery/usability path |
-| P2 | UI behavior on supported browsers and screen sizes | Compatibility coverage |
+On the actual candidate build, select cases covering sign-in → valid upload → processing → open transcript → edit → save/reload → export. Add insufficient balance and owner/nonowner checks where the change can affect them.
 
-## Exit criteria for this scope
+A green smoke thread is not a full regression pass. Include failed, blocked and untested high-risk checks in the recommendation.
 
-- Priority P0 checks executed against the candidate build.
-- Blocking failures reviewed; known issues and deviations tracked.
-- P1/P2 exclusions and blocked checks explicitly listed.
-- Changed requirements, untested environments and residual risks included in the release summary.
-- Product/release owner can make a decision using the recorded evidence.
+## Execution and decision rules
 
-## Release test summary template
+1. Identify the change, target build, affected users and environments.
+2. Select P0/P1 checks by risk and dependencies; document exclusions.
+3. Run and record actual results with sanitized evidence.
+4. Triage failures; distinguish defects, blocked prerequisites and unclear requirements.
+5. Retest fixes on the new build and adjacent flows.
+6. Give a reasoned QA recommendation; the accountable release owner makes the release decision.
 
-| Field | Entry |
+## Worked example: a save-related release
+
+**Illustrative only — fictional build, counts and findings. This is not an Audiodoc release history.**
+
+| Field | Example assessment |
 | --- | --- |
-| Release / build | |
-| Environment, browser and OS | |
-| Change description | |
-| Test scope and selected regression IDs | |
-| Total planned / executed | |
-| Passed / failed / blocked / not run | |
-| Open defects, severity and links | |
-| Coverage gaps and exclusions | |
-| Residual risk | |
-| QA recommendation with rationale | |
-| Release decision and owner | |
+| Release | DEMO-RELEASE-1, a hypothetical change to transcript saving |
+| Scope | Core journey, edit persistence, export, access and recovery |
+| Planned / executed | 12 planned; 9 executed |
+| Results | 8 passed; 1 failed; 1 blocked; 2 not run |
+| Failed | DEMO-EDIT-01: saved correction disappears after reload |
+| Blocked | Payment confirmation: sandbox provider unavailable |
+| Not run | Physical iPhone journey; longer-transcript interruption |
+| Residual risk | User edits may be lost; payment and device coverage incomplete |
+| QA recommendation | Hold this release because the failed persistence check affects the changed core workflow |
+| Decision | Illustrative recommendation only; no real release was approved or blocked |
 
-## Related artifacts
+Counts reconcile: 8 + 1 + 1 + 2 = 12; executed is passed + failed = 9. The blocked provider is an environment condition, not a fictional product defect.
 
-- [File Upload Test Design](audiodoc-studio-file-upload.md)
-- [Balance Validation Test Design](audiodoc-studio-balance-validation.md)
-- [Test Execution Summary](test-execution-report.md)
+### What changes the recommendation?
 
-[← Portfolio](../README.md)
+Retest the corrected persistence path and adjacent export/reload behavior on the new build. Complete the blocked and omitted checks or have the release owner explicitly accept their documented residual risk. Do not copy the old pass status to a new build without deciding which results remain relevant.
+
+## Existing historical evidence
+
+The supplied portfolio contains [two recorded upload scenarios](test-execution-report.md). It does not contain a completed historical release decision. The example above demonstrates the reporting structure without manufacturing one.
+
+[Coverage](product-coverage.md) · [Defect example](defect-report-template.md) · [Profile](../README.md)
+

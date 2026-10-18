@@ -1,27 +1,41 @@
-# Audiodoc Studio — Test Design Overview
+# QA Portfolio — Reading Guide
 
-This test-design index connects product requirements with suitable techniques and detailed test cases.
+## Artifact types
 
-## Test-design map
+The original portfolio supplies the upload/balance work samples and the recorded results. The expanded and revised reference designs were prepared collaboratively with the project owner and AI assistance, using a review of the product source. They are not presented as Elizaveta's independently authored historical work. The illustrative defect and release examples are fictional.
 
-| Feature / condition | Technique | Test-design artifact |
+| Type | Meaning | Where |
 | --- | --- | --- |
-| Up to 10 files | Equivalence Partitioning, Boundary Value Analysis | [File Upload: TC-UPL-003, TC-UPL-004](audiodoc-studio-file-upload.md) |
-| Up to 1700 MB per file | Equivalence Partitioning, Boundary Value Analysis | [File Upload: TC-UPL-005](audiodoc-studio-file-upload.md) |
-| File picker and drag-and-drop | Input-path coverage | [File Upload: TC-UPL-001, TC-UPL-002](audiodoc-studio-file-upload.md) |
-| Insufficient / sufficient available time | Equivalence Partitioning, Decision Table Testing | [Balance Validation: TC-BAL-001, TC-BAL-002](audiodoc-studio-balance-validation.md) |
-| Balance-to-duration threshold | Boundary Value Analysis | [Balance Validation: TC-BAL-003](audiodoc-studio-balance-validation.md) |
-| Upload and processing workflow | State Transition Testing | [Balance Validation: workflow and transitions](audiodoc-studio-balance-validation.md) |
-| Change impact and release checks | Risk-based test selection | [Regression Test Selection](regression-and-release.md) |
+| Recorded execution | Results retained from the existing portfolio, with original evidence limitations | [Execution record](test-execution-report.md) |
+| Reference test design | Prepared checks, fixtures, expectations and risk priorities; no execution result implied | Feature designs and coverage map |
+| Illustrative example | A clearly labeled fictional scenario showing reporting technique | Worked defect and release examples |
+| Process reference | A reusable way to organize QA work | Regression selection and handover |
 
-## Test-design checklist
+**Reference baseline:** Audiodoc Studio source snapshot reviewed on 18 October 2026. A deployed build may differ. Confirm the target build and supported environments before executing. The reference covers the reviewed application's user-facing domains, not every possible input or the internals of its separate transcription service.
 
-- [ ] Identify the requirement, source and relevant business rule.
-- [ ] Define positive, negative and boundary conditions.
-- [ ] Prepare test data and prerequisites that isolate the feature under test.
-- [ ] Write reproducible steps and observable expected results.
-- [ ] Link each test case to its requirement.
-- [ ] Clarify missing acceptance criteria before asserting precise behavior.
-- [ ] Keep execution evidence, defects and release decisions in separate artifacts.
+## Reading paths
 
-[← Portfolio](../README.md)
+- **Recruiter:** [CV](../CV.md) → [case study](audiodoc-studio-case-study.md).
+- **QA reviewer:** [coverage map](product-coverage.md) → [upload](audiodoc-studio-file-upload.md) → [balance](audiodoc-studio-balance-validation.md) → [execution record](test-execution-report.md).
+- **Delivery team:** [regression and release](regression-and-release.md) → [defect example](defect-report-template.md) → [handover](qa-handover-playbook.md).
+
+## Coverage and techniques
+
+| Artifact | Main techniques |
+| --- | --- |
+| [Upload and media validation](audiodoc-studio-file-upload.md) | Equivalence classes, exact boundaries, cumulative selection, input-path equivalence |
+| [Balance and processing](audiodoc-studio-balance-validation.md) | Decision rules, duration rounding, aggregated demand, states and recovery |
+| [Editor and output](editor-and-output.md) | Data persistence, ordering, audio/text correspondence, compatibility between document generations |
+| [Accounts, payments and access](accounts-payments-and-access.md) | Role matrices, payment states, consent rules, account isolation |
+| [Compatibility and exploration](compatibility-and-exploration.md) | Environment sampling, keyboard checks, interruptions, exploratory charters |
+
+## Common execution contract
+
+Every run identifies the build, environment, date, fixture and account role. Record **Passed**, **Failed**, **Blocked** or **Not run** for each selected case; a design document alone has no execution status.
+
+A pass requires the stated expectation to be checked. Separate a verified intermediate state from an unverified end-to-end result. For defects, retain reproduction steps and sanitized evidence; for blocked checks, name the missing condition and its release impact.
+
+Use authorized test accounts and synthetic or approved media. Payment cases use a provider sandbox or an explicitly approved test mechanism. Never put credentials, payment details, private audio or personal transcripts into portfolio evidence.
+
+[Profile](../README.md)
+

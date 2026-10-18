@@ -1,39 +1,41 @@
-# QA Process Handover — End-to-End Ownership Transfer
+# QA Handover — Operational Reference
+
+**Artifact type:** process reference. This is a usable handover plan, not a claim that a particular transfer has already been completed.
 
 ## Objective
 
-Ensure continuity of the QA process as responsibilities move to another engineer, preserving product knowledge, testing practices, visibility into quality, and established ways of working with the team.
+Enable the incoming QA engineer to take a change from requirements through execution, defect follow-up and release reporting, using the same product understanding and evidence standards.
 
-## Scope of Responsibility Transfer
+## Handover sequence
 
-### Test Cycle Management
+| Stage | Work together | Deliverable / exit criterion |
+| --- | --- | --- |
+| 1. Product orientation | Walk the core journey and the failure consequences. Explain user roles, processing time, editor variants and sharing. | Incoming engineer can describe the journey and the highest risks using the [coverage map](product-coverage.md). |
+| 2. Environment and data | Identify supported builds, test accounts, synthetic fixtures, payment sandbox and service dependencies. | A repeatable setup; no credentials in documentation; known blocked prerequisites listed. |
+| 3. Shared execution | Execute one happy path, one negative path and one persistence/recovery path. | Results identify build/environment/data and separate observed, reported and unverified behavior. |
+| 4. Defect workflow | Reproduce an actual authorized issue, agree impact, discuss with a developer, and retest a fix if available. | Another person can reproduce the report; retest links to the changed build. Do not invent a defect to satisfy the exercise. |
+| 5. Independent cycle | Incoming engineer selects scope for a real change, executes and reports; outgoing engineer reviews reasoning. | A coherent release recommendation with exclusions and residual risks; corrections incorporated. |
 
-Transfer the approach to testing product changes: analyzing requirements and affected functionality, defining test scope, selecting scenarios based on risk, carrying out functional and regression testing, retesting fixes, and performing final verification ahead of release.
+## Materials to transfer
 
-### Product Context and Test Documentation
+- [Coverage and fixtures](product-coverage.md): critical journeys, rule boundaries, product-specific expectations.
+- [Feature designs](test-design-workbook.md): reusable cases and their intended scope.
+- Execution records: actual build, environment, data and evidence; historical results stay identifiable.
+- Defect register: open/resolved items, impact, reproduction and retest status in the team's tracker.
+- [Regression and release](regression-and-release.md): prioritization and decision format.
+- Operational contacts: owners of requirements, deployments, accounts, provider sandbox and release decisions, recorded in the internal team workspace.
 
-Transfer knowledge of critical user journeys, dependencies between product features, test environments, previously identified defects, and higher-risk areas.
+## Product-specific knowledge
 
-Transfer existing test cases and checklists, approaches to regression-suite selection, and practices for keeping test documentation current.
+- “1700 MB” in the UI uses a binary byte limit; do not change the expected threshold without checking the target build.
+- Unknown media duration may require transfer/probe before the final processing check.
+- Shared links still require authentication; reading, editing and ownership are separate permissions.
+- Classic and beta word-based editors have different capabilities; the current test target must be named.
+- Successful UI feedback does not by itself prove saved content, usable export or reconciled balance.
 
-### Defect Management and Team Collaboration
+## Completion
 
-Transfer the workflow for documenting, discussing priorities with the team, tracking, and retesting defects. Explain how to collaborate with developers and other stakeholders to clarify requirements, review changes, resolve blockers, and communicate testing outcomes.
+The incoming engineer can independently choose a useful scope, prepare data, execute, report reproducible findings, follow a fix and explain what remains untested. Review one subsequent cycle to confirm the process remains usable.
 
-### QA Reporting and Release Readiness
+[Profile](../README.md) · [Design index](test-design-workbook.md)
 
-Transfer the approach to monitoring testing progress, recording results, and reporting quality status ahead of a release.
-
-Particular attention is given to identifying untested areas, outstanding defects, and residual risks that stakeholders should consider when deciding whether to release a change.
-
-## Handover Approach
-
-The transition progresses from product and QA-process orientation to shared work on active tasks, then independent test execution with results reviewed, followed by gradual transfer of day-to-day QA ownership.
-
-## Completion Criteria
-
-The handover is complete when the incoming QA engineer can independently support the full test cycle for a change: define an appropriate test scope, organize execution, document outcomes, follow defects through resolution, assess residual risks, and provide the team with a reasoned view of readiness for release within their scope.
-
-The key measure of success is the ability to sustain the existing QA process without continuous involvement from the outgoing engineer.
-
-[← Portfolio](../README.md)

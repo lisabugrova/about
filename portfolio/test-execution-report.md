@@ -1,55 +1,36 @@
-# Audiodoc Studio — Upload Validation Test Execution Summary
+# Audiodoc Studio — Recorded Upload Execution
 
-**Feature:** Your documents → Upload files → Processing  
-**Related design:** [Balance Validation & Processing](audiodoc-studio-balance-validation.md)  
-**Test data:** supported videos of **10 seconds** and **26 minutes 16 seconds**  
-**Execution evidence:** interface screenshots for file validation and readiness; processing/completion behavior confirmed by the tester's account.
+**Artifact type:** historical execution record retained from the existing portfolio.  
+**Scope:** two balance/upload scenarios. Expanded reference cases elsewhere are not execution results.
 
-## Results
+## Results and evidence
 
-| Test case | Preconditions | Expected result | Actual result | Result |
-| --- | --- | --- | --- | --- |
-| [TC-BAL-001](audiodoc-studio-balance-validation.md#tc-bal-001--insufficient-balance-prevents-upload) | Balance **0 s**, video **10 s** | Prevent upload; show insufficient balance and **10 s** shortfall | Selected file displays **Insufficient balance** and **Not enough time, you need 10 seconds more**; **Start upload!** absent | **Pass** — UI observed |
-| [TC-BAL-002](audiodoc-studio-balance-validation.md#tc-bal-002--process-a-video-with-sufficient-balance) | Balance **1 hour**, video **26:16** | Ready state; processing; download and editor | Screenshot shows **Ready to upload!** and **Start upload!**. Tester reports successful upload and processing, warning not to leave the page, and working download/editor actions | **Pass** — ready state observed; completion tester-reported |
+| Case | Conditions | Recorded actual behavior | Recorded outcome / evidence |
+| --- | --- | --- | --- |
+| TC-BAL-001 | Available time 0 s; supported 10 s video | File selected; Insufficient balance; message says 10 seconds more; normal Start upload action absent | Pass recorded — UI observation described |
+| TC-BAL-002 | Available time 3600 s; supported 26:16 video | Ready state and Start upload action; successful processing, leave-page warning, download and editor access reported | Pass recorded — readiness described from screenshot; completion tester-reported |
 
-## Test execution record
+For TC-BAL-001, the validation error is the expected business behavior, not a product defect. For TC-BAL-002, the intermediate ready state and the full processing result have different evidence sources.
 
-### TC-BAL-001 — Insufficient balance
+## Original execution metadata
 
-**Actual behavior**
-1. The **10-second** video appears in the selected-file list despite **0 seconds** remaining.
-2. The file status is **Insufficient balance**.
-3. The shortage message states **10 seconds more**.
-4. The normal **Start upload!** action is not shown.
-
-**Assessment:** The insufficient-balance validation works as expected for this scenario. An expected validation error is not itself a product defect.
-
-### TC-BAL-002 — Sufficient balance
-
-**Actual behavior**
-1. A **26:16** video is selected with **1 hour** available.
-2. The file state is **Ready to upload!**; **Start upload!** is available.
-3. After the action, the tester reports that upload and processing complete successfully and a leave-page warning is shown while processing.
-4. The processed result can be downloaded or opened in the editor.
-
-**Assessment:** The observed ready state and the tester-reported completion match the expected workflow.
-
-## Execution metadata
-
-| Field | Value |
+| Field | Available record |
 | --- | --- |
 | Application | Audiodoc Studio |
-| Browser / OS | To record |
-| Build / release | To record |
-| Execution date | To record |
-| Test account / dataset | Redacted |
-| Screenshot attachments | Not included in public report |
+| Media | 10-second and 26:16 supported videos |
+| Browser / OS | Not recorded in the supplied material |
+| Build / release | Not recorded in the supplied material |
+| Execution date | Not recorded in the supplied material |
+| Account / dataset identity | Redacted in the original report |
+| Screenshots | Described by the original report; attachments not included |
 
-## Recommended next execution
+No build, environment, attachment or new pass result has been reconstructed from the source code.
 
-- Using a supported **10-second** video, check balances **9 s, 10 s and 11 s** (not yet executed).
-- Repeat zero-balance validation via drag-and-drop.
-- Verify shortage calculation for multi-file selection and rounding.
-- Record build, browser, date and sanitized evidence for repeatability.
+## Follow-on execution
 
-[← Portfolio](../README.md)
+The original report identified 9/10/11-second eligibility, zero-balance drag-and-drop, combined file duration and rounding as next checks. These remain **not recorded as executed** here.
+
+For a new run, capture build, environment, date, fixture identity, actual observations and sanitized evidence. Keep the old result and new result distinguishable; do not retroactively assign the new build to this record.
+
+[Test design](audiodoc-studio-balance-validation.md) · [Case study](audiodoc-studio-case-study.md) · [Profile](../README.md)
+

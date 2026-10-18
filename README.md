@@ -1,39 +1,50 @@
 # Elizaveta Bugrova
+### Manual QA Engineer · Web Applications · Regression & Release Verification
 
-**Language:** [English](README.md) · [Русская версия](ru/README.md)
-
-**QA Engineer | Manual Web Testing | Regression Testing | Release Verification**
-
+[English](README.md) · [Русский](ru/README.md)  
 Tbilisi, Georgia · [Telegram](https://t.me/lizavetamirr) · [GitHub](https://github.com/lisabugrova)
 
-I am a QA engineer with commercial experience since 2024, working on functional verification, regression, release readiness, QA reporting and knowledge transfer. I focus on translating product requirements into clear, risk-based checks and communicating results that support delivery decisions.
+I am a QA engineer with commercial experience since 2024. I work with functional testing, regression, release verification, test documentation and knowledge transfer. My focus is making product behavior understandable and testable: clarify the rule, identify the risk, check the user journey and communicate the result.
 
-## Selected QA Work Samples
+My selected project is **Audiodoc Studio**, a web application for transcribing audio and video and working with the resulting text. My portfolio begins with upload and processing-time validation, then develops a broader QA reference for the product's editing, access and payment workflows.
 
-| Artifact | Focus |
+**[Read my CV](CV.md)** · **[Audiodoc Studio case study](portfolio/audiodoc-studio-case-study.md)** · **[Explore the QA portfolio](portfolio/test-design-workbook.md)**
+
+## What I bring to a team
+
+- **Structured test design:** equivalence classes, boundaries, decision rules and state transitions, with concrete data and observable expectations.
+- **Functional and regression testing:** user journeys, negative paths, change impact and risk-based selection.
+- **Clear QA communication:** reproducible steps, expected versus actual behavior, coverage gaps and release risks.
+- **Reusable documentation:** test cases, execution records, defect reporting and a practical handover structure.
+
+## Selected project experience
+
+**Audiodoc Studio — Manual QA**
+
+- Translate upload and processing-time rules into positive, negative and boundary checks.
+- Separate file validation, queue limits and available balance so that each check targets the intended rule.
+- Document insufficient-balance and sufficient-balance processing scenarios, distinguishing observed UI from reported completion.
+- Organize requirements, test cases and regression priorities into connected, reusable materials.
+
+[Read the case study →](portfolio/audiodoc-studio-case-study.md)
+
+## Portfolio
+
+| Area | What to inspect |
 | --- | --- |
-| **[Audiodoc Studio — File Upload Test Design](portfolio/audiodoc-studio-file-upload.md)** | Requirements, equivalence classes, boundary values, file picker/drag-and-drop, six test cases and traceability |
-| **[Audiodoc Studio — Balance & Processing Test Design](portfolio/audiodoc-studio-balance-validation.md)** | Balance-versus-duration validation, decision table, state transitions and four test cases |
-| [Upload Validation — Test Execution Summary](portfolio/test-execution-report.md) | Observed insufficient-balance response, successful readiness and tester-reported processing/results |
-| [Regression Test Selection & Release Summary](portfolio/regression-and-release.md) | Change-impact analysis, prioritized regression coverage, release summary template |
-| [QA Process Handover — End-to-End Ownership Transfer](portfolio/qa-handover-playbook.md) | Transferring the full testing cycle, product context, team collaboration, and QA reporting |
+| Product understanding | [Product coverage and risk map](portfolio/product-coverage.md) |
+| Uploads and media validation | [File selection, queue limits, exact size boundaries and duration discovery](portfolio/audiodoc-studio-file-upload.md) |
+| Balance and processing | [Eligibility decisions, batch balance, processing, retry and reconciliation](portfolio/audiodoc-studio-balance-validation.md) |
+| Transcript work | [Editing, playback, speakers, stories, saving and exports](portfolio/editor-and-output.md) |
+| Business workflows | [Accounts, consent, payments, projects and sharing](portfolio/accounts-payments-and-access.md) |
+| User environment | [Compatibility, localization, accessibility and exploratory charters](portfolio/compatibility-and-exploration.md) |
+| Recorded results | [Existing upload execution record](portfolio/test-execution-report.md) |
+| Delivery decisions | [Regression selection and worked release assessment](portfolio/regression-and-release.md) |
+| Collaboration | [Worked defect report](portfolio/defect-report-template.md) · [QA handover](portfolio/qa-handover-playbook.md) |
 
-**Supporting documents:** [Test Design Overview](portfolio/test-design-workbook.md) · [Defect Report Template](portfolio/defect-report-template.md)
+The portfolio distinguishes **recorded execution**, **reference test design** and **illustrative examples**. The expanded reference suite was prepared collaboratively with the project owner and AI assistance; it is separate from the original work samples and recorded results.
 
-## Areas of Experience
+## Career focus
 
-- **Functional testing:** Test analysis, user journeys, positive/negative scenarios, verification of UI and workflow rules.
-- **Regression testing:** Change-impact analysis, risk-based test selection, retesting affected functionality.
-- **Release verification:** Coverage review, identification of blockers and untested areas, communication of remaining risks.
-- **QA documentation:** Test cases, checklists, reproducible defect reports, concise test status reporting.
-- **Knowledge transfer:** Organizing reusable test materials and helping another tester take ownership of recurring checks.
+Manual QA roles in product engineering teams, including international organizations, with responsibility for functional quality, regression and clear release reporting.
 
-## Testing Approach
-
-**Requirements → Risks → Test design → Execution → Defect reporting → Release assessment**
-
-I choose techniques based on the feature: **equivalence partitioning and boundary value analysis** for inputs and limits; **decision tables** for business rules; **state transitions** for workflows; and risk-based selection for regression testing.
-
----
-
-**Career focus:** QA opportunities in larger engineering teams, including international product organizations.
