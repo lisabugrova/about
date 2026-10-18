@@ -47,7 +47,7 @@
 
 ## Recommended next execution
 
-- Check balance **1 second below, equal to and 1 second above** the required processing duration.
+- Using a supported **10-second** video, check balances **9 s, 10 s and 11 s** (not yet executed).
 - Repeat zero-balance validation via drag-and-drop.
 - Verify shortage calculation for multi-file selection and rounding.
 - Record build, browser, date and sanitized evidence for repeatability.
