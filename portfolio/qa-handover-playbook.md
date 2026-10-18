@@ -35,15 +35,4 @@
 - [ ] Can prepare a release test summary and escalate unresolved risks.
 - [ ] Knows ownership, escalation contacts and documentation locations.
 
-## Handover sign-off
-
-| Field | Entry |
-| --- | --- |
-| Engineer / trainee | |
-| Mentor | |
-| Scope transferred | |
-| Evidence reviewed | |
-| Remaining questions | |
-| Independent ownership date | |
-
 [← Portfolio](../README.md)
