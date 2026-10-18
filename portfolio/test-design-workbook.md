@@ -3,8 +3,7 @@
 **Type:** original educational exercise. **Execution status:** not executed. **Production affiliation:** none.
 
 ## Assumed product rules
-A fictional mobile-friendly web application lets visitors open a public story, start/pause its audio, and save a listening position locally. The user may choose playback speed from **0.75×, 1×, 1.25×, 1.5×, 2×**. A story can be **available**, **unavailable**, or **loading**. Location permission is optional; when denied, users can browse a list of stories without a map position. These rules are assumptions for the exercises, not claims about Audiodoc.
-
+A mobile-friendly web application lets visitors open a public story, start/pause its audio, and save a listening position locally. The user may choose playback speed from **0.75×, 1×, 1.25×, 1.5×, 2×**. A story can be **available**, **unavailable**, or **loading**. Location permission is optional; when denied, users can browse a list of stories without a map position. 
 ## 1. Equivalence partitioning
 For a hypothetical story-search field:
 - **Valid:** 1–80 visible characters.
