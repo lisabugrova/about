@@ -2,7 +2,7 @@
 
 **QA Engineer · Manual Testing · Regression Testing · Release Verification**
 
-📍 Tbilisi, Georgia · [Telegram](https://t.me/lizavetamirr) · [GitHub](https://github.com/lisabugrova)
+Tbilisi, Georgia · [Telegram](https://t.me/lizavetamirr) · [GitHub](https://github.com/lisabugrova)
 
 I am a QA engineer with commercial experience in a startup environment since 2024. I focus on checking user-facing functionality, identifying change-related risks, and making the results of testing clear enough to support release decisions.
 
