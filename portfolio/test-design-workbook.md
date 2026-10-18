@@ -1,83 +1,40 @@
-# Test design workbook — fictional audio-story web app
+# Test design workbook — Audiodoc Studio
 
-**Type:** original educational exercise. **Execution status:** not executed. **Production affiliation:** none.
+**Status: in progress · Test-design artifact, not an execution report.**
 
-## Assumed product rules
-A mobile-friendly web application lets visitors open a public story, start/pause its audio, and save a listening position locally. The user may choose playback speed from **0.75×, 1×, 1.25×, 1.5×, 2×**. A story can be **available**, **unavailable**, or **loading**. Location permission is optional; when denied, users can browse a list of stories without a map position. 
-## 1. Equivalence partitioning
-For a hypothetical story-search field:
-- **Valid:** 1–80 visible characters.
-- **Invalid:** empty input; 81+ visible characters.
-- **Unspecified:** whitespace-only, Unicode normalization, leading/trailing spaces, emoji, and server-side limits. These require clarification.
+This workbook connects software test design techniques to observable functionality in **Audiodoc Studio**. It replaces the previous fictional story-search examples as the main demonstration of design thinking.
 
-| ID | Partition | Example input | Expected result |
+## Feature and technique map
+
+| Observed feature | Test-design technique | Why this technique fits | Work sample |
 | --- | --- | --- | --- |
-| EP-01 | Valid length | `history` | Query accepted |
-| EP-02 | Empty | empty string | Input rejected or guidance shown |
-| EP-03 | Too long | 81 characters | Input rejected with understandable feedback |
+| File-upload quantity limit (maximum 10 files) | **Equivalence Partitioning (EP), Boundary Value Analysis (BVA)** | Distinguish permitted/over-limit classes; test 9, 10, 11 around the boundary | [File upload and available time](audiodoc-studio-file-upload.md) |
+| Per-file size limit (up to 1700 MB each) | **EP, BVA** | Test just below, at, and just above the exact byte limit (unit needs clarification) | [File upload and available time](audiodoc-studio-file-upload.md) |
+| Upload restricted at **0 seconds** of available time | **EP, Decision Table Testing** | Availability is a business-rule condition that must be enforced through both upload entry points | [File upload and available time](audiodoc-studio-file-upload.md) |
+| Select file versus drag-and-drop | **Functional testing and alternate-input coverage** | Both UI pathways must respect the same validation and access constraints | [File upload and available time](audiodoc-studio-file-upload.md) |
+| Minutes/hours selector, plus/minus, payment selection | **BVA + Decision Tables, after rule clarification** | Need min/max increments, ranges, pricing and state rules before producing precise oracles | Planned |
+| Price tiers beginning at 300, 600 and 1200 minutes, as shown in the expanded UI | **BVA + Decision Tables, after rule clarification** | Rate changes are possible decision thresholds, but the exact pricing formula and boundaries are not yet confirmed | Planned |
+| Upload / processing lifecycle | **State Transition Testing, after observing real states** | Upload, progress, completed/failed/canceled may involve transitions; specific states are not asserted without evidence | Planned |
+| Browser and device combinations | **Pairwise Testing, after confirming supported environments** | Optimize cross-platform combinations while preserving two-factor coverage | [Educational example only](pairwise-drag-drop.md) |
 
-**Oracle note:** These outcomes depend on the assumed requirements; clarify before actual execution.
+## Key confirmed business rule
 
-## 2. Boundary value analysis
-Test 0, 1, 2 and 79, 80, 81 characters for an inclusive 1–80-character constraint. Include multibyte characters and whitespace as *separate exploratory risks*; do not equate bytes, code points, and perceived characters.
+**REQ-UPL-001:** When `Available time = 0 seconds`, a user **cannot upload a file**. This is a QA clarification about expected product behavior; it has **not been marked Pass** in this portfolio.
 
-| ID | Input length | Expected |
-| --- | ---: | --- |
-| BVA-01 | 0 | Reject |
-| BVA-02 | 1 | Accept |
-| BVA-03 | 2 | Accept |
-| BVA-04 | 79 | Accept |
-| BVA-05 | 80 | Accept |
-| BVA-06 | 81 | Reject |
+The first draft tests are **TC-UPL-001** (file picker with zero balance) and **TC-UPL-002** (drag-and-drop with zero balance). Both have **Not Run** status until test execution is documented.
 
-## 3. Decision table: location and connectivity
-Cached story list can be read offline; a location pin appears only with permission granted and a location fix; location refusal never blocks the story list.
+## Work items before execution
 
-| Rule | Network available | List cache available | Location granted | Expected |
-| --- | --- | --- | --- | --- |
-| D-01 | Yes | Either | Yes | Fetch list; location-enhanced map view where available |
-| D-02 | Yes | Either | No | Fetch list; no user-location pin |
-| D-03 | No | Yes | Yes | Cached list with offline notice; location behavior depends on device fix |
-| D-04 | No | Yes | No | Cached list with offline notice; no user-location pin |
-| D-05 | No | No | Either | Offline empty state with retry guidance |
+1. Clarify **how** the zero-balance restriction is presented to users (disabled chooser, error upon selection, etc.).
+2. Confirm the exact scope of the 10-file limit and the exact bytes meant by 1700 MB.
+3. Confirm supported formats and whether **positive** available time guarantees upload eligibility.
+4. Execute tests in an approved environment with synthetic files; document actual outcomes and defects.
+5. Add verified product or release evidence only if publication is authorized.
 
-**Rule D-03 is intentionally incomplete:** confirm whether the product supports offline maps before assigning a map expectation.
+## Study foundation
 
-## 4. State transition testing: audio player
-States: **Idle → Loading → Playing ↔ Paused → Ended**. Error can occur from Loading or Playing. The user can retry after an error.
+- Lee Copeland, *A Practitioner's Guide to Software Test Design* — EP, BVA, decisions and combinations.
+- Sviatoslav Kulikov, *Software Testing: Basic Course* — practical testing foundations and documentation.
+- [ISTQB CTFL 4.0.1](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf) — standardized vocabulary, test design and reporting.
 
-| ID | Start state | Event | Expected state |
-| --- | --- | --- | --- |
-| ST-01 | Idle | Play | Loading |
-| ST-02 | Loading | Media ready | Playing |
-| ST-03 | Playing | Pause | Paused |
-| ST-04 | Paused | Resume | Playing |
-| ST-05 | Playing | Track ends | Ended |
-| ST-06 | Loading | Network failure | Error |
-| ST-07 | Error | Retry | Loading |
-
-Also explore invalid transitions, repeated taps, slow responses, backgrounding, and interruption by incoming audio.
-
-## 5. Pairwise testing: practical drag-and-drop example
-
-**Audiodoc-style educational scenario, not a documented production test run.** For a hypothetical drag-and-drop task, vary **browser** (Chrome / Firefox / Safari), **device** (desktop / mobile), **draggable item count** (3 / 10), and **drop target** (valid / invalid). All these values are *assumptions* to validate against the actual feature.
-
-There are **3 × 2 × 2 × 2 = 24** full configurations, but this verified pairwise covering array needs **6 configurations** and covers all **30 distinct value pairs**:
-
-| ID | Browser | Device | Items | Drop target |
-| --- | --- | --- | ---: | --- |
-| PW-01 | Chrome | Desktop | 3 | Valid |
-| PW-02 | Chrome | Mobile | 10 | Invalid |
-| PW-03 | Firefox | Desktop | 3 | Invalid |
-| PW-04 | Firefox | Mobile | 10 | Valid |
-| PW-05 | Safari | Desktop | 10 | Valid |
-| PW-06 | Safari | Mobile | 3 | Invalid |
-
-Each row is an **execution configuration**, not a test result. On the selected device/browser, open the specified task, drag an item to the chosen target type, and check placement, visual feedback, and task state against confirmed requirements. Record environment, build, pass/fail/blocked status, and evidence.
-
-See **[full pairwise drag-and-drop case study](pairwise-drag-drop.md)** for prerequisites, exact example steps, pair-coverage calculation, risk-based additional tests, and limitations. Pairwise is **not** a substitute for high-impact edge cases, nor proof that every 3-way interaction is covered.
-
-## Traceability and review
-Map each scenario to a requirement ID once real requirements are available; record environment, build, expected result, actual result, and evidence on execution. These tables demonstrate *design*, not a test run.
-
-[← Portfolio home](../README.md)
+[← Detailed Audiodoc Studio case](audiodoc-studio-file-upload.md) · [← Portfolio home](../README.md)
