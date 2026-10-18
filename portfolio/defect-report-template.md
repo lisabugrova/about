@@ -41,13 +41,4 @@ Describe the reproducible deviation, quoting exact UI messages or attaching evid
 - Reproducibility:
 - Actual/expected API response (if applicable):
 
-## Impact and follow-up
-
-- **User or business impact:**
-- **Regression area:**
-- **Current status / owner:**
-- **Retest result:**
-
-**Reporting rule:** An expected validation message (for example, **Insufficient balance**) is not a defect when the application correctly prevents an unauthorized action. File a defect only for an observable deviation from an established requirement.
-
 [← Portfolio](../README.md)
