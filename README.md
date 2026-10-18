@@ -30,7 +30,7 @@ Areas of responsibility:
 | [Regression & release assessment](portfolio/regression-and-release.md) | Change impact analysis, prioritization, risk-based regression, and honest release reporting |
 | [QA handover playbook](portfolio/qa-handover-playbook.md) | Transfer of product knowledge, test assets, routines, and independent ownership criteria |
 
-> **About these samples:** They use a **fictional location-based audio-story web app** with explicitly stated assumptions. They are educational portfolio artifacts, **not production test runs, real defects, or internal Audiodoc documents**.
+> **About these samples:** They use a **not production test runs, real defects, or internal Audiodoc documents**.
 
 ## How I think about quality
 
@@ -40,18 +40,6 @@ Areas of responsibility:
 - When reporting readiness, state what passed, what failed, what was blocked, and what was *not tested*.
 - Keep test materials understandable for developers, product stakeholders, and the next QA engineer.
 
-## Test-design foundation
-
-I use these as references for the structure and vocabulary of my portfolio exercises:
-
-1. Lee Copeland — *A Practitioner's Guide to Software Test Design* (2004).
-2. Sviatoslav Kulikov — *Software Testing: Basic Course* (original Russian title: «Тестирование программного обеспечения. Базовый курс»).
-3. [ISTQB Certified Tester Foundation Level syllabus, v4.0.1](https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf).
-
-See [references and learning map](REFERENCES.md) for how these sources inform the examples. Citing a syllabus is **not** a claim of ISTQB certification.
-
 ---
 
 **Looking to grow in a larger engineering organization**, contribute to a mature quality process, and build on hands-on release and regression testing experience.
-
-*Portfolio in progress — examples are revised as my learning and verified experience develop.*
