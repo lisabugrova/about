@@ -26,6 +26,7 @@ Areas of responsibility:
 | Artifact | What it demonstrates |
 | --- | --- |
 | [Test design workbook](portfolio/test-design-workbook.md) | Equivalence partitioning, boundary value analysis, decision tables, state transitions, and pairwise thinking |
+| [Pairwise drag-and-drop case](portfolio/pairwise-drag-drop.md) | Six executable configurations selected from 24, validated two-way factor coverage, and risk-based additional checks |
 | [Sample defect reports](portfolio/defect-report-samples.md) | Reproducible reports with expected/actual behavior, impact, and supporting evidence requirements |
 | [Regression & release assessment](portfolio/regression-and-release.md) | Change impact analysis, prioritization, risk-based regression, and honest release reporting |
 | [QA handover playbook](portfolio/qa-handover-playbook.md) | Transfer of product knowledge, test assets, routines, and independent ownership criteria |
