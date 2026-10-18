@@ -18,7 +18,7 @@ I am a QA engineer with commercial experience since 2024, working on functional 
 | [Regression Test Selection & Release Summary](portfolio/regression-and-release.md) | Change-impact analysis, prioritized regression coverage, release summary template |
 | [QA Handover Checklist](portfolio/qa-handover-playbook.md) | Knowledge-transfer plan, practical independence criteria and handover sign-off |
 
-**Supporting documents:** [Test Design Overview](portfolio/test-design-workbook.md) · [Defect Report Template](portfolio/defect-report-template.md) · [Methodology References](REFERENCES.md)
+**Supporting documents:** [Test Design Overview](portfolio/test-design-workbook.md) · [Defect Report Template](portfolio/defect-report-template.md)
 
 ## Areas of Experience
 
@@ -33,8 +33,6 @@ I am a QA engineer with commercial experience since 2024, working on functional 
 **Requirements → Risks → Test design → Execution → Defect reporting → Release assessment**
 
 I choose techniques based on the feature: **equivalence partitioning and boundary value analysis** for inputs and limits; **decision tables** for business rules; **state transitions** for workflows; and risk-based selection for regression testing.
-
-Methodology: **Lee Copeland · Святослав Куликов · ISTQB CTFL syllabus**.
 
 ---
 
