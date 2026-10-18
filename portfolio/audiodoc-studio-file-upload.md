@@ -19,8 +19,8 @@
 ## Test-data preparation
 
 - Use supported, non-sensitive media files. Confirm supported formats before execution.
-- Prepare **9, 10 and 11 files** with an individual size below the limit; ensure the account balance is sufficient for the combined media duration so count validation can be isolated.
-- Prepare files with sizes **L − 1 byte, L and L + 1 byte**, where **L** is the confirmed byte value of 1700 MB.
+- Prepare **9, 10 and 11 files**, named `count_01.mp4` through `count_11.mp4`, each **10 seconds long and approximately 2 MB**, and set the available time to **1 hour (3600 s)**. The largest group requires 110 seconds of media time; this isolates the count limit from the balance gate.
+- Prepare size-boundary fixtures `size_1699999999B.mp4` (**1,699,999,999 bytes**), `size_1700000000B.mp4` (**1,700,000,000 bytes**) and `size_1700000001B.mp4` (**1,700,000,001 bytes**), each valid MP4 of **26 minutes 16 seconds**; set balance to **1 hour**. These numbers use **decimal MB** and must be replaced by the binary set listed below if the specification defines MiB.
 - Record the initial document count and reset the queue between independent scenarios.
 - For drag-and-drop checks, use a supported desktop browser and a local file.
 
@@ -38,15 +38,15 @@
 | Parameter | Values to test | Purpose |
 | --- | --- | --- |
 | File count | 0, 1, 9, 10, 11 | Empty input and 10-file limit |
-| File size | L − 1 byte, L, L + 1 byte | Exact per-file size limit |
+| File size (decimal-MB test set) | 1,699,999,999; 1,700,000,000; 1,700,000,001 bytes | At/around the 1700 MB boundary |
 
-**Clarify before execution:** whether 10 is a per-batch or total-queue limit; whether MB is decimal or binary; how an invalid file in a mixed selection is handled.
+**Clarify before execution:** whether 10 is a per-batch or total-queue limit; whether MB is decimal or binary; how an invalid file in a mixed selection is handled. If **1700 MiB** is intended, use **1,782,579,199 / 1,782,579,200 / 1,782,579,201 bytes** instead. All boundary sizes describe *planned fixtures*, not already-created files. See [test data specification](test-data-catalog.md).
 
 ## Test cases
 
 ### TC-UPL-001 — Select a valid video using the file picker
 
-**Preconditions:** Signed-in user, sufficient available processing time for the video, empty upload queue; supported 26 min 16 sec video.
+**Preconditions / test data:** Signed-in user; available processing time **1 hour (3600 s)**; empty upload queue; supported `sample_video_26m16s.mp4`, duration **00:26:16 (1576 s)**.
 
 1. Open **Your documents**.
 2. Click the **Upload files** area.
@@ -57,7 +57,7 @@
 
 ### TC-UPL-002 — Select a file via drag-and-drop
 
-**Preconditions:** Same as TC-UPL-001; OS/file manager supports dragging files.
+**Preconditions / test data:** Signed-in user; **1 hour (3600 s)** available; empty queue; supported `sample_video_26m16s.mp4` (**00:26:16**); desktop browser and OS file manager support dragging files.
 
 1. Drag a supported file from the OS file manager into the upload zone.
 2. Release it over the upload area.
@@ -67,35 +67,35 @@
 
 ### TC-UPL-003 — Accept a selection at the file-count limit
 
-**Preconditions:** Sufficient available processing time; 10 valid files below the size limit; empty queue.
+**Preconditions / test data:** Available processing time **1 hour (3600 s)**; empty queue; **`count_01.mp4`–`count_10.mp4`**, each **10 s**, approximately **2 MB** and of a supported format.
 
-1. Select exactly **10** files.
+1. Select **`count_01.mp4`–`count_10.mp4`** (exactly **10 files**).
 2. Check the number of queued files and any validation messages.
 
 **Expected result:** The advertised 10-file limit is not exceeded. Ten otherwise eligible files can be selected, subject to confirmation of the limit's scope and other restrictions.
 
 ### TC-UPL-004 — Reject an over-limit file count
 
-**Preconditions:** Same setup as TC-UPL-003, with **11** files.
+**Preconditions / test data:** Available processing time **1 hour (3600 s)**; empty queue; **`count_01.mp4`–`count_11.mp4`**, each **10 s** and approximately **2 MB**.
 
-1. Select **11** files in one operation.
+1. Select **`count_01.mp4`–`count_11.mp4`** (exactly **11 files**) in one operation.
 2. Inspect the queue and feedback.
 
 **Expected result:** No more than the permitted maximum is accepted. The handling policy (reject all or accept up to 10) must match the agreed requirement.
 
 ### TC-UPL-005 — Validate the per-file size boundary
 
-**Preconditions:** Sufficient time, supported file type, exact byte limit **L** confirmed.
+**Preconditions / test data:** Available processing time **1 hour (3600 s)**; empty queue; valid **26:16** MP4 files of **1,699,999,999**, **1,700,000,000** and **1,700,000,001 bytes**. First confirm the limit means decimal **1700 MB**; if not, use the explicit MiB equivalents in the boundary table. Prepare usable files without corrupting their media container.
 
-1. Select a file of size **L − 1 byte**.
-2. Reset the queue and select a file of size **L**.
-3. Reset the queue and select a file of size **L + 1 byte**.
+1. Select **`size_1699999999B.mp4`**, size **1,699,999,999 bytes**.
+2. Clear the queue; select **`size_1700000000B.mp4`**, size **1,700,000,000 bytes**.
+3. Clear the queue; select **`size_1700000001B.mp4`**, size **1,700,000,001 bytes**.
 
-**Expected result:** The first two sizes satisfy the advertised size limit; the over-limit file is not accepted as valid. Actual acceptance still depends on other file requirements.
+**Expected result:** Under a confirmed **decimal 1700 MB** limit, the first two sizes satisfy the size restriction; the **1,700,000,001-byte** file is over limit. Other validation rules (format and balance) must also be satisfied.
 
 ### TC-UPL-006 — Clear the selected-file queue
 
-**Preconditions:** One or more files selected; **Clear and start over** visible.
+**Preconditions / test data:** Available processing time **1 hour (3600 s)**; selected `sample_video_10s.mp4` (**10 s**, supported format); **Clear and start over** visible.
 
 1. Click **Clear and start over**.
 2. Inspect the file queue and available actions.
