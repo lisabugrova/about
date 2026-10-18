@@ -16,7 +16,7 @@ This test-design index connects product requirements with suitable techniques an
 
 ## Test data
 
-Detailed reusable media fixtures, time balances (**0, 9, 10, 11, 3600 s**), file-count sets (**0, 1, 9, 10, 11 files**) and precise size boundaries are documented in the [Test Data Specification](test-data-catalog.md). Test cases reference the exact fixtures rather than symbolic values.
+Media files, available time **0 / 9 / 10 / 11 / 3600 s**, file counts **0 / 1 / 9 / 10 / 11** and size boundaries: [Test Data Specification](test-data-catalog.md).
 
 ## Test-design checklist
 
