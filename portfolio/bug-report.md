@@ -2,6 +2,8 @@
 
 [Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
 
+Language: [Русский](../ru/README.md) · [English](bug-report.md)
+
 ## Bug report
 
 **Example prepared for this portfolio. It is not a defect found in Audiodoc.**
