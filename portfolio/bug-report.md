@@ -20,6 +20,7 @@
 | Actual result in this hypothetical scenario | The queue contains all 11 files and shows no count-limit message. |
 | Impact | The cumulative queue limit can be bypassed by adding files in separate batches. |
 | Suggested severity | Medium: validation is bypassed; data loss is not established. |
-| Evidence for a real report | A recording of both additions, final queue and validation state; exact browser/build and repeatability. |
+| Priority to fix | To be set during triage, considering release impact, affected users and an available workaround. |
+| Evidence for a real report | A recording of both additions, final queue and validation state; observation date, exact browser/build and repeatability. |
 
 **Reporting choice:** the title names the failure and its trigger. The report separates visible behavior from impact; it does not assume that all 11 files were processed or charged.

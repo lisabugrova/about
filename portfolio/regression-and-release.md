@@ -20,7 +20,7 @@
 | Stage | What to prepare | Completion check |
 | --- | --- | --- |
 | Test report | Build/environment, selected checks, results, defects, blocked and untested areas. | The team can see what was checked and what risk remains. |
-| Fix verification | Reproduction steps and checks of adjacent behavior. | The fix is checked on the new build; related behavior is covered. |
+| Fix verification | Repeat the previously failing steps on the fixed build; add checks for the fix where needed. | The original failure no longer occurs. Related behavior is checked separately by regression testing. |
 | QA handover | Product rules, fixtures, test cases, recurring checks and known issues. | Another tester can prepare and run the checks, record results and identify blockers. |
 
 **Selection rule:** prioritize the changed behavior and its dependencies. Record exclusions so a short regression run does not imply full product coverage.

@@ -1,12 +1,21 @@
 # Elizaveta Bugrova
+[Telegram](https://t.me/lizavetamirr)
 
-[Русский](ru/README.md) · **English** · [Telegram](https://t.me/lizavetamirr)
+Language: [Русский](ru/README.md) · **English**  
 
 **Manual QA Engineer · Tbilisi, Georgia**
 
 I have commercial QA experience since 2024. I test web applications, prepare test cases and defect reports, select regression checks and report release risks. I also organize test documentation and help another tester take over recurring checks.
 
-**Looking for:** a manual QA role in a product team, including international teams.
+## Professional skills
+
+- **Functional testing:** requirements analysis, user scenarios, positive and negative tests, and checks of interface rules and business logic.
+- **Regression testing:** change impact analysis, risk-based test selection and retesting affected functionality.
+- **Release readiness:** assessing coverage, identifying blockers and untested areas, and reporting remaining risks.
+- **Test documentation:** test cases, checklists, reproducible bug reports and brief test status reports.
+- **Knowledge transfer:** maintaining reusable test materials and preparing a colleague to work independently.
+
+**Career goal:** a QA engineer role in a larger engineering team, including an international product company.
 
 ## Work samples
 
