@@ -1,6 +1,8 @@
 # Елизавета Бугрова
 
-**Русский** · [English](../../portfolio/audiodoc-studio-payment-testing.md) · [Telegram](https://t.me/lizavetamirr) · [Резюме](../README.md)
+[Telegram](https://t.me/lizavetamirr) · [Резюме](../README.md)
+
+Language: [Русский](audiodoc-studio-payment-testing.md) · [English](../../portfolio/audiodoc-studio-payment-testing.md)
 
 ## Audiodoc Studio — тест-дизайн оплаты и зачисления времени
 

@@ -1,6 +1,8 @@
 # Elizaveta Bugrova
 
-[Русский](../ru/portfolio/audiodoc-studio-payment-testing.md) · **English** · [Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
+[Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
+
+Language: [Русский](../ru/portfolio/audiodoc-studio-payment-testing.md) · [English](audiodoc-studio-payment-testing.md)
 
 ## Audiodoc Studio — Payment & Balance Testing
 

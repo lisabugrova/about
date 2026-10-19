@@ -1,6 +1,8 @@
 # Елизавета Бугрова
 
-**Русский** · [English](../../portfolio/bug-report.md) · [Telegram](https://t.me/lizavetamirr) · [Резюме](../README.md)
+[Telegram](https://t.me/lizavetamirr) · [Резюме](../README.md)
+
+Language: [Русский](bug-report.md) · [English](../../portfolio/bug-report.md)
 
 ## Баг-репорт
 
@@ -21,6 +23,3 @@
 | Влияние | **Лимит очереди можно обойти, добавляя файлы несколькими порциями.** |
 | Предлагаемая серьёзность | Средняя: нарушено правило валидации. |
 | Приоритет исправления | Определяет PM |
-
-
-

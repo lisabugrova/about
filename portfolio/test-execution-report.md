@@ -1,6 +1,8 @@
 # Elizaveta Bugrova
 
-[Русский](../ru/portfolio/test-execution-report.md) · **English** · [Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
+[Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
+
+Language: [Русский](../ru/portfolio/test-execution-report.md) · [English](test-execution-report.md)
 
 ## Test results
 

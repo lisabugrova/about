@@ -1,6 +1,8 @@
 # Елизавета Бугрова
 
-**Русский** · [English](../../portfolio/regression-and-release.md) · [Telegram](https://t.me/lizavetamirr) · [Резюме](../README.md)
+[Telegram](https://t.me/lizavetamirr) · [Резюме](../README.md)
+
+Language: [Русский](regression-and-release.md) · [English](../../portfolio/regression-and-release.md)
 
 ## Регресс и передача QA
 

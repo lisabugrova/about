@@ -1,7 +1,8 @@
 # Elizaveta Bugrova
+
 [Telegram](https://t.me/lizavetamirr)
 
-Language: [Русский](ru/README.md) · **English**  
+Language: [Русский](ru/README.md) · [English](README.md)
 
 **Manual QA Engineer · Tbilisi, Georgia**
 

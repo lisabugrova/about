@@ -1,6 +1,8 @@
 # Elizaveta Bugrova
 
-[Русский](../ru/portfolio/audiodoc-studio-file-upload.md) · **English** · [Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
+[Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
+
+Language: [Русский](../ru/portfolio/audiodoc-studio-file-upload.md) · [English](audiodoc-studio-file-upload.md)
 
 ## Test cases: upload and balance
 

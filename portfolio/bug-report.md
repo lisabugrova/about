@@ -1,6 +1,8 @@
 # Elizaveta Bugrova
 
-[Русский](../ru/portfolio/bug-report.md) · **English** · [Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
+[Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
+
+Language: [Русский](../ru/portfolio/bug-report.md) · [English](bug-report.md)
 
 ## Bug report
 

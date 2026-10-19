@@ -1,7 +1,8 @@
 # Елизавета Бугрова
+
 [Telegram](https://t.me/lizavetamirr)
 
-Language: **Русский** · [English](../README.md)  
+Language: [Русский](README.md) · [English](../README.md)
 
 **QA-инженер · Ручное тестирование · Тбилиси, Грузия**
 

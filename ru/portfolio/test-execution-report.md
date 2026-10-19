@@ -1,6 +1,8 @@
 # Елизавета Бугрова
 
-**Русский** · [English](../../portfolio/test-execution-report.md) · [Telegram](https://t.me/lizavetamirr) · [Резюме](../README.md)
+[Telegram](https://t.me/lizavetamirr) · [Резюме](../README.md)
+
+Language: [Русский](test-execution-report.md) · [English](../../portfolio/test-execution-report.md)
 
 ## Результаты проверок
 
