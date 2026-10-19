@@ -2,6 +2,8 @@
 
 [Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
 
+Language: [Русский](../ru/portfolio/audiodoc-studio-file-upload.md) · [English](audiodoc-studio-file-upload.md)
+
 ## Test cases: upload and balance
 
 **Task:** check file-selection rules and whether processing can start. This is test design; the table does not record execution.
