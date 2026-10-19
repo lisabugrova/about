@@ -24,6 +24,5 @@ These examples use Audiodoc Studio, a web application for transcribing audio and
 | Sample | Contents |
 | --- | --- |
 | [Test cases](portfolio/audiodoc-studio-file-upload.md) | Upload and balance checks: test data, expected results and the reasoning behind the choices. |
-| [Test results](portfolio/test-execution-report.md) | Two selected execution records: expected versus actual behavior, status and follow-up checks. |
-| [Bug report](portfolio/bug-report.md) | A filled, hypothetical example: reproduction steps, expected and actual behavior, and impact. |
-| [Regression and QA handover](portfolio/regression-and-release.md) | How to choose checks after a change and transfer recurring work to another tester. |
+| [Test design](portfolio/audiodoc-studio-payment-testing.md) | Five test cases: successful payment, decline, cancellation, duplicate-credit prevention and delayed confirmation. |
+| [Bug report](portfolio/bug-report.md) | Bug report: reproduction steps, expected and actual behavior, and impact. |
