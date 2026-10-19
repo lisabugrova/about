@@ -1,40 +1,26 @@
 # Elizaveta Bugrova
+[Telegram](https://t.me/lizavetamirr)
 
-**Language:** [English](README.md) · [Русская версия](ru/README.md)
+**Manual QA Engineer · Tbilisi, Georgia**
 
-**QA Engineer | Manual Web Testing | Regression Testing | Release Verification**
+I have commercial QA experience since 2024. I test web applications, prepare test cases and defect reports, select regression checks and report release risks. I also organize test documentation and help another tester take over recurring checks.
 
-Tbilisi, Georgia · [Telegram](https://t.me/lizavetamirr) · [GitHub](https://github.com/lisabugrova)
+## Professional skills
 
-I am a QA engineer with commercial experience since 2024, working on functional verification, regression, release readiness, QA reporting and knowledge transfer. I focus on translating product requirements into clear, risk-based checks and communicating results that support delivery decisions.
+- **Functional testing:** requirements analysis, user scenarios, positive and negative tests, and checks of interface rules and business logic.
+- **Regression testing:** change impact analysis, risk-based test selection and retesting affected functionality.
+- **Release readiness:** assessing coverage, identifying blockers and untested areas, and reporting remaining risks.
+- **Test documentation:** test cases, checklists, reproducible bug reports and brief test status reports.
+- **Knowledge transfer:** maintaining reusable test materials and preparing a colleague to work independently.
 
-## Selected QA Work Samples
+**Career goal:** a QA engineer role in a larger engineering team, including an international product company.
 
-| Artifact | Focus |
+## Work samples
+
+These examples use Audiodoc Studio, a web application for transcribing audio and video.
+
+| Sample | Contents |
 | --- | --- |
-| **[Audiodoc Studio — Payment & Balance Testing](portfolio/audiodoc-studio-payment-testing.md)** | Five designed scenarios: success, decline, cancellation, duplicate-credit prevention and delayed confirmation (not executed) |
-| **[Audiodoc Studio — File Upload Test Design](portfolio/audiodoc-studio-file-upload.md)** | Requirements, equivalence classes, boundary values, file picker/drag-and-drop, six test cases and traceability |
-| **[Audiodoc Studio — Balance & Processing Test Design](portfolio/audiodoc-studio-balance-validation.md)** | Balance-versus-duration validation, decision table, state transitions and four test cases |
-| [Upload Validation — Test Execution Summary](portfolio/test-execution-report.md) | Observed insufficient-balance response, successful readiness and tester-reported processing/results |
-| [Regression Test Selection & Release Summary](portfolio/regression-and-release.md) | Change-impact analysis, prioritized regression coverage, release summary template |
-| [QA Process Handover — End-to-End Ownership Transfer](portfolio/qa-handover-playbook.md) | Transferring the full testing cycle, product context, team collaboration, and QA reporting |
-
-**Supporting documents:** [Test Design Overview](portfolio/test-design-workbook.md) · [Defect Report Template](portfolio/defect-report-template.md)
-
-## Areas of Experience
-
-- **Functional testing:** Test analysis, user journeys, positive/negative scenarios, verification of UI and workflow rules.
-- **Regression testing:** Change-impact analysis, risk-based test selection, retesting affected functionality.
-- **Release verification:** Coverage review, identification of blockers and untested areas, communication of remaining risks.
-- **QA documentation:** Test cases, checklists, reproducible defect reports, concise test status reporting.
-- **Knowledge transfer:** Organizing reusable test materials and helping another tester take ownership of recurring checks.
-
-## Testing Approach
-
-**Requirements → Risks → Test design → Execution → Defect reporting → Release assessment**
-
-I choose techniques based on the feature: **equivalence partitioning and boundary value analysis** for inputs and limits; **decision tables** for business rules; **state transitions** for workflows; and risk-based selection for regression testing.
-
----
-
-**Career focus:** QA opportunities in larger engineering teams, including international product organizations.
+| [Test cases](portfolio/audiodoc-studio-file-upload.md) | Upload and balance checks: test data, expected results and the reasoning behind the choices. |
+| [Test design](portfolio/audiodoc-studio-payment-testing.md) | Five test cases: successful payment, decline, cancellation, duplicate-credit prevention and delayed confirmation. |
+| [Bug report](portfolio/bug-report.md) | Bug report: reproduction steps, expected and actual behavior, and impact. |
