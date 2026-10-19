@@ -2,6 +2,8 @@
 
 [Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
 
+Language: [Русский](../ru/portfolio/regression-and-release.md) · [English](regression-and-release.md)
+
 ## Regression and QA handover
 
 **Process example:** selecting checks after a change to upload or balance validation, reporting results and transferring recurring work.
