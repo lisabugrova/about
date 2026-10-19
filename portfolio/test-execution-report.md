@@ -2,6 +2,8 @@
 
 [Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
 
+Language: [Русский](../ru/portfolio/test-execution-report.md) · [English](test-execution-report.md)
+
 ## Test results
 
 **Selected records from the existing portfolio.** Statuses below are retained from that report.
