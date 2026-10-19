@@ -1,4 +1,8 @@
-# Audiodoc Studio — Payment & Balance Testing
+# Elizaveta Bugrova
+
+[Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
+
+## Audiodoc Studio — Payment & Balance Testing
 
 **Type:** Functional & Integration Test Design  
 **Scope:** Payment for video-processing time and crediting purchased time to the user's balance.  
@@ -187,7 +191,7 @@ These rules are assumptions for this demonstration test design and must be valid
 ## Suite Acceptance Criteria
 
 - Successful payment credits the correct amount of time exactly once.
-- Declined and definitively canceled payments do not change the balance.
+- Unsuccessful and definitively canceled payments do not change the balance.
 - Duplicate confirmation for the same transaction does not cause duplicate credit.
 - Processing time is credited only following final payment success.
 - The balance remains consistent after a page refresh.
