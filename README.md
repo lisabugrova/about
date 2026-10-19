@@ -12,6 +12,7 @@ I am a QA engineer with commercial experience since 2024, working on functional 
 
 | Artifact | Focus |
 | --- | --- |
+| **[Audiodoc Studio — Payment & Balance Testing](portfolio/audiodoc-studio-payment-testing.md)** | Five designed scenarios: success, decline, cancellation, duplicate-credit prevention and delayed confirmation (not executed) |
 | **[Audiodoc Studio — File Upload Test Design](portfolio/audiodoc-studio-file-upload.md)** | Requirements, equivalence classes, boundary values, file picker/drag-and-drop, six test cases and traceability |
 | **[Audiodoc Studio — Balance & Processing Test Design](portfolio/audiodoc-studio-balance-validation.md)** | Balance-versus-duration validation, decision table, state transitions and four test cases |
 | [Upload Validation — Test Execution Summary](portfolio/test-execution-report.md) | Observed insufficient-balance response, successful readiness and tester-reported processing/results |
