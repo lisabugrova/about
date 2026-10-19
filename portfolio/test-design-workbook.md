@@ -1,36 +1,33 @@
-# QA portfolio
+# Selected QA work samples
 
-[CV](../CV.md) · [Audiodoc case study](audiodoc-studio-case-study.md)
+[CV](../CV.md) · [Audiodoc case study](audiodoc-studio-case-study.md) · [Русский](../ru/portfolio/test-design-workbook.md)
 
-## Materials
+These samples illustrate test design, regression selection, reporting and knowledge transfer. They are selected examples, not a count of all testing performed during the project.
 
-| Material | Contents |
-| --- | --- |
-| [Coverage map](product-coverage.md) | Product areas, risks and test data |
-| [Upload tests](audiodoc-studio-file-upload.md) | Selection, queue limits, file size and media duration |
-| [Balance tests](audiodoc-studio-balance-validation.md) | Eligibility, rounding, combined duration, retry and accounting |
-| [Editor and exports](editor-and-output.md) | Text, audio alignment, speakers, stories, saving and output files |
-| [Accounts, payments and access](accounts-payments-and-access.md) | Authentication, consent, purchases, sharing, projects and referrals |
-| [Compatibility and exploration](compatibility-and-exploration.md) | Browsers, devices, keyboard access, languages and interruptions |
-| [Execution record](test-execution-report.md) | Two scenarios retained from the original portfolio |
-| [Regression and release](regression-and-release.md) | Selecting checks and a worked release report |
-| [Defect report](defect-report-template.md) | A worked reporting example |
-| [QA handover](qa-handover-playbook.md) | Setup, shared testing and transfer of responsibility |
+## Audiodoc Studio
+
+| Sample | What it shows | Type |
+| --- | --- | --- |
+| [Upload validation](audiodoc-studio-file-upload.md) | Requirements, isolated test data, boundary values and traceability | Test design |
+| [Balance and processing](audiodoc-studio-balance-validation.md) | Business rules, decision table and state transitions | Test design |
+| [Execution record](test-execution-report.md) | Expected and actual behavior for two selected scenarios | Recorded results |
+| [Regression and release](regression-and-release.md) | Change-impact analysis, priorities and release reporting | Selection plan and template |
+
+## QA documentation and handover
+
+- [Defect report template](defect-report-template.md) — reproducible steps, expected/actual behavior and supporting evidence.
+- [QA handover approach](qa-handover-playbook.md) — transferring product knowledge, test materials and recurring responsibilities.
+
+These process documents describe an approach to the work; they are not records of a particular defect, release decision or completed handover.
+
+## Additional reference
+
+[Expanded Audiodoc QA reference](../reference/README.md) covers other product areas, including editing, exports, accounts, payments, access and compatibility. It was prepared collaboratively from source review and is kept separately from the selected work samples.
 
 ## About these materials
 
-The upload/balance samples and two execution records came from Elizaveta's original portfolio. The expanded designs were prepared with the project owner and AI assistance after reviewing the application source on **18 October 2026**. They are reference material, not independently authored historical work or completed test runs.
+These are selected documents from Elizaveta's existing portfolio, edited for readability. Recorded execution results have not been expanded.
 
-The defect and release examples are fictional and labeled accordingly. The process documents describe how to organize the work.
-
-The suite covers the reviewed application's main user-facing areas. It does not establish coverage of every input or the separate transcription service. A deployed build may differ from the reviewed source.
-
-## Running the checks
-
-Record the build, browser/device, date, fixture and account role. Use **Passed**, **Failed**, **Blocked** or **Not run**. A pass requires checking the expected result; reaching an intermediate screen does not establish end-to-end success.
-
-Attach reproduction steps and sanitized evidence to defects. For a blocked check, name the missing prerequisite and its effect on the release decision.
-
-Use test accounts, synthetic or approved media, and a payment sandbox. Keep credentials, payment details and customer recordings out of the portfolio.
+The additional reference has its own authorship and source notes. Its cases are proposed designs, not historical test runs or independently authored work attributed to Elizaveta.
 
 [Profile](../README.md)

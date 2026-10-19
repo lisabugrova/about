@@ -1,8 +1,8 @@
 # Transcript editing, audio and output
 
-**Reference test design.** For the origin and status of these cases, see the [test design workbook](test-design-workbook.md).
+**Reference test design.** For the origin and status of these cases, see the [test design workbook](README.md).
 
-[Profile](../README.md) · [Product coverage](product-coverage.md) · [Regression and release](regression-and-release.md)
+[Profile](../README.md) · [Product coverage](product-coverage.md) · [Regression and release](../portfolio/regression-and-release.md)
 
 Check that users can correct a transcript, listen back, assemble a story and export usable files without losing work. Verify results by reopening documents and files.
 
@@ -77,4 +77,4 @@ Record build, browser/OS, document type, access and network conditions. Edit as 
 - **Speaker suggestions:** when should AI assumption badges persist, change or disappear? Current edit paths differ.
 - **Tolerances:** agree alignment and response-time limits by device/document size. Existing measured boundaries can be preserved exactly; new unmeasured splits require estimates.
 
-In the [release record](regression-and-release.md), attach fixture IDs, before/after evidence, results and defects. Mark untested cases **Not run** and unresolved requirements **Blocked / clarification required**.
+In the [release record](../portfolio/regression-and-release.md), attach fixture IDs, before/after evidence, results and defects. Mark untested cases **Not run** and unresolved requirements **Blocked / clarification required**.

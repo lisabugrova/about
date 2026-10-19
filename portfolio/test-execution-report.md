@@ -1,28 +1,26 @@
-# Audiodoc Studio: upload test results
+# Audiodoc Studio — selected test results
 
-Two scenarios retained from the original portfolio.
+[Case study](audiodoc-studio-case-study.md) · [Русский](../ru/portfolio/test-execution-report.md)
 
-| Case | Conditions | Recorded behavior | Result and evidence |
+These two scenarios are selected records from the portfolio. They show how expected behavior and actual results were documented for upload validation and processing.
+
+| Case | Conditions | Recorded result | Evidence recorded |
 | --- | --- | --- | --- |
-| TC-BAL-001 | 0 s available; 10 s video | File selected; Insufficient balance; 10-second shortage; normal Start upload action absent | Passed in the original report; UI observation described |
-| TC-BAL-002 | 3600 s available; 26:16 video | Ready state and Start upload action; processing, leave-page warning, download and editor access reported | Passed in the original report; readiness described from a screenshot, completion tester-reported |
+| [TC-BAL-001](audiodoc-studio-balance-validation.md#tc-bal-001--insufficient-balance-prevents-upload) | 0 s available; 10 s video | File selected; insufficient balance; 10-second shortage; normal processing action absent. Recorded as passed. | UI observation described |
+| [TC-BAL-002](audiodoc-studio-balance-validation.md#tc-bal-002--process-a-video-with-sufficient-balance) | 3600 s available; 26:16 video | Ready state and start action; processing, leave-page warning, download and editor access reported. Recorded as passed. | Readiness described from a screenshot; completion reported in the test record |
 
-The first case checks an expected restriction. An insufficient-balance message is the correct result.
+For the first scenario, the insufficient-balance message is the expected validation result.
 
-## Available evidence
+## Record details
 
-Browser/OS, build and execution date were not recorded. Account and dataset identifiers were redacted. Screenshots were described but not attached.
+Browser/OS, build and execution date were not included. Account and dataset identifiers were redacted. Screenshots were described but are not attached. The report is retained with those limitations.
 
-The report therefore supports different levels of detail: UI behavior is described for both cases; the full processing outcome in TC-BAL-002 is the tester's account.
+## Follow-up checks listed in the report
 
-## Next checks
-
-The original report listed these as still to be run:
-
-- 10-second video at 9/10/11-second balances.
+- A 10-second video at 9/10/11-second balances.
 - Zero-balance validation through drag-and-drop.
 - Combined file duration and rounding.
 
-New runs should have their own build, environment, date and evidence.
+These follow-up checks were not recorded as executed. Further runs should include their own environment, date and evidence.
 
-[Balance design](audiodoc-studio-balance-validation.md) · [Case study](audiodoc-studio-case-study.md) · [Profile](../README.md)
+[All work samples](test-design-workbook.md)

@@ -1,6 +1,6 @@
 # Compatibility and Exploratory Testing
 
-**QA reference:** proposed checks and exploratory sessions. [Scope and provenance](test-design-workbook.md).
+**QA reference:** proposed checks and exploratory sessions. [Scope and provenance](README.md).
 
 ## Environment selection
 
@@ -33,5 +33,5 @@ Choose environments from the release's supported-browser list and record exact v
 
 Record findings, tested boundaries, open questions and the next useful check after each session, including sessions with no defects found.
 
-[Coverage](product-coverage.md) · [Regression](regression-and-release.md) · [Profile](../README.md)
+[Coverage](product-coverage.md) · [Regression](../portfolio/regression-and-release.md) · [Profile](../README.md)
 

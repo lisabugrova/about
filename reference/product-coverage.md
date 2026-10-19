@@ -1,6 +1,6 @@
 # Audiodoc Studio — Product Coverage and Risk Map
 
-**QA reference:** coverage and test data for the main user workflows. [Scope and provenance](test-design-workbook.md).
+**QA reference:** coverage and test data for the main user workflows. [Scope and provenance](README.md).
 
 ## Risk priorities
 
@@ -61,5 +61,5 @@ Adjust priorities to the release and affected users. A layout problem that block
 
 Confirm service availability and payment-sandbox access before running the relevant checks.
 
-[Design index](test-design-workbook.md) · [Regression and release](regression-and-release.md) · [Profile](../README.md)
+[Design index](README.md) · [Regression and release](../portfolio/regression-and-release.md) · [Profile](../README.md)
 

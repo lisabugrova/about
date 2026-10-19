@@ -1,55 +1,120 @@
-# Audiodoc Studio — Balance and Processing
+# Audiodoc Studio — Balance Validation & Processing Test Design
 
-**Test design.** Original IDs: TC-BAL-001–004; the remaining cases extend the plan.
+**Selected design sample.** Results for the recorded scenarios are in the [execution report](test-execution-report.md).
 
-## Rules and test data
+**Feature:** Processing-time balance → file selection → upload → results  
+**Test type:** Functional, positive and negative  
+**Techniques:** Equivalence Partitioning (EP), Decision Table Testing, Boundary Value Analysis (BVA), State Transition Testing  
+**Objective:** Verify upload eligibility against video duration and the main successful-processing journey.
 
-Time is measured in seconds. The browser rounds media duration up to a whole second. Available time must cover each file and the complete batch. If local metadata fails, upload and a server probe may precede the final balance check.
+## Test basis
 
-Use MEDIA-10 (10 s), MEDIA-LONG (26:16 = 1576 s), controlled balances and separate accounts/tabs where needed. Verify file duration independently: 10.01 seconds requires 11 seconds. Use the approved payment sandbox for top-ups.
+| ID | Business rule / expected behavior |
+| --- | --- |
+| BAL-01 | A file may be selected even when **Available time** is insufficient. |
+| BAL-02 | When available time is insufficient, the file is marked **Insufficient balance**; the UI indicates missing time and upload cannot start. |
+| BAL-03 | When time is sufficient, the selected file is marked **Ready to upload!** and **Start upload!** is available. |
+| BAL-04 | After **Start upload!**, the user is advised not to leave the page while upload/processing continues. |
+| BAL-05 | After successful processing, users can download the result or open it in the editor. |
+
+## Test data
+
+| Data set | Available time | Video duration | Purpose |
+| --- | --- | --- | --- |
+| BAL-D01 | **0 seconds** | **10 seconds** | Insufficient balance |
+| BAL-D02 | **1 hour** (3600 s) | **26 min 16 s** (1576 s) | Sufficient balance; successful journey |
+| BAL-D03 | **9 seconds** | **10 seconds** | One second below video duration |
+| BAL-D04 | **10 seconds** | **10 seconds** | Balance equals video duration |
+| BAL-D05 | **11 seconds** | **10 seconds** | One second above video duration |
+
+**Test files:** `sample_video_10s.mp4` — 10 s (BAL-D01, BAL-D03–05); `sample_video_26m16s.mp4` — 26 min 16 s (BAL-D02).
+
+## Equivalence classes
+
+| Class | Balance relative to required media time | Expected behavior |
+| --- | --- | --- |
+| EP-BAL-01 | Insufficient | File can be selected; upload is blocked; shortage displayed |
+| EP-BAL-02 | Sufficient | File can reach **Ready to upload!**; upload action available |
+| EP-BAL-03 | Balance **10 seconds**, video **10 seconds** | Check equality boundary |
 
 ## Decision table
 
-| Duration known? | Available balance | Demand | Expected result |
+| Rule | Available time | Video duration | Expected system state |
 | --- | --- | --- | --- |
-| Yes | 0 s | 10 s | Show 10 s shortage; processing cannot start. |
-| Yes | 9 s | 10 s | Show 1 s shortage; block processing. |
-| Yes | 10 s | 10 s | Enough time; other checks still apply. |
-| Yes | 11 s | 10 s | Enough time; verify the final charge. |
-| Yes | 3600 s | 1576 s | Enough time for the successful path. |
-| Yes, two files | 15 s | 10 + 10 s | Each alone fits; combined batch does not. |
-| Yes, fractional | 10 s | 10.01 s → 11 s | Insufficient after rounding. |
-| No | Controlled balance | Determined by server probe | Probe, check balance and show the result; missing metadata does not mean free processing. |
-| Changes after selection | 0 → 3600 s | 10 s | Update the selected file's readiness without replacing it. |
+| DT-BAL-01 | 0 s | 10 s | **Insufficient balance**, need 10 more seconds; cannot start |
+| DT-BAL-02 | 3600 s | 1576 s | **Ready to upload!**; **Start upload!** available |
+| DT-BAL-03 | 9 s | 10 s | **Insufficient balance**, **1 s** short under second-level accounting |
+| DT-BAL-04 | 10 s | 10 s | **Ready to upload!** under second-level accounting |
+| DT-BAL-05 | 11 s | 10 s | **Ready to upload!** under second-level accounting |
 
-The two equivalence classes are insufficient and sufficient balance. Equality belongs to the sufficient class.
+## Test cases
 
-## Cases
+### TC-BAL-001 — Insufficient balance prevents upload
 
-| ID | Priority | Action / data | Expected result |
-| --- | --- | --- | --- |
-| TC-BAL-001 | P0 | Select MEDIA-10 with zero available time. | File can be selected; 10 s shortage shown; processing cannot start. |
-| TC-BAL-002 | P0 | Select MEDIA-LONG with 3600 s; start; wait; open and download. | Ready → uploading → processing → completed; document and download match the selected media. |
-| TC-BAL-003 | P1 | Test MEDIA-10 separately at 9/10/11 s. | 9 s blocks with 1 s shortage; 10/11 s pass the balance check. |
-| TC-BAL-004 | P1 | Keep MEDIA-10 selected at zero balance; top up to 3600 s in the sandbox. | Existing row updates and processing can start. |
-| TC-BAL-005 | P0 | Select two 10-second files with 15 s total balance. | Batch shortage detected even though each file fits separately. |
-| TC-BAL-006 | P1 | Compare verified 10.00/10.01 s files at 10/11 s balances. | Rounding up is consistent across eligibility, displayed shortage and the transaction. |
-| TC-BAL-007 | P0 | Simulate unknown duration, then return a duration above balance. | Upload/probe may finish; balance must be checked before allowing transcription. Record what happens to uploaded, unprocessed media. |
-| TC-BAL-008 | P1 | Simulate probe failure or an invalid response. | Recoverable error; no false completion or invented duration. |
-| TC-BAL-009 | P0 | Finish known-duration processing; inspect document, balance and history. | One result; charge reconciles. Record starting balance, charged time, final balance and transaction ID. |
-| TC-BAL-010 | P0 | Let one batch file finish and another fail; retry the failed file. | Completed result remains; only failed work retries; no duplicate result or unexplained repeat charge. |
-| TC-BAL-011 | P0 | Rapidly repeat start/retry on a controlled failure path. | Repeated actions are blocked or handled without duplicate processing or charges. |
-| TC-BAL-012 | P0 | Use two tabs with the same near-limit account balance. | Check server accounting: no unaccounted use, unexplained negative balance or false success. Local request order does not prove server concurrency safety. |
-| TC-BAL-013 | P1 | Interrupt the network during transfer and processing in separate tests. | Error identifies the stage; recovery preserves completed documents. |
-| TC-BAL-014 | P1 | Navigate away or refresh during active work; return to documents. | Warnings work as supported by the browser; restored status matches actual work. |
-| TC-BAL-015 | P1 | Expire a test session before a protected step. | No false success; signing in again provides a clear recovery path. |
-| TC-BAL-016 | P1 | Simulate debit/history refresh failure after a result is produced. | Result/accounting mismatch is visible; a success notification alone does not prove correct accounting. |
+**Preconditions / test data:** Signed-in user; **Available time = 0 seconds**; supported video **`sample_video_10s.mp4`**, duration **00:00:10**; empty selected-file queue.
 
-## States and accounting
+1. Open **Your documents**.
+2. Confirm that **Available time** is **0 seconds**.
+3. Select the 10-second video.
+4. Inspect the validation message and the upload action.
 
-Track pending → uploading → processing → completed or error, then retry. After interruptions, compare the UI state with the actual result.
+**Expected result:** The file appears in the selection list with **Insufficient balance**. The message indicates that **10 seconds** of additional time are needed. **Start upload!** is not available; processing does not start. The user can identify that additional processing time is required.
 
-Confirm debit/refund rules before reporting charges for failed processing as defects. The frontend cannot prove server reservation, concurrency or compensation behavior. If a rule is unclear, record the open question and mark the expected result undetermined.
+### TC-BAL-002 — Process a video with sufficient balance
 
-[Recorded execution](test-execution-report.md) · [Regression](regression-and-release.md) · [Coverage](product-coverage.md) · [Profile](../README.md)
+**Preconditions / test data:** Signed-in user; **Available time = 1 hour (3600 s)**; supported video **`sample_video_26m16s.mp4`**, duration **00:26:16 (1576 s)**; empty selected-file queue.
+
+1. Open **Your documents** and select the video.
+2. Check the file status and available actions.
+3. Click **Start upload!**.
+4. Observe upload/processing and the navigation warning.
+5. Wait for processing to finish.
+6. Download the result and open it in the editor.
+
+**Expected result:** **Ready to upload!** is shown; **Start upload!** is available; upload/processing proceeds with a warning not to leave the page; both result actions work on completion.
+
+### TC-BAL-003 — Check the eligibility boundary
+
+**Preconditions / test data:** Supported **`sample_video_10s.mp4`**, duration **00:00:10**; separate account states with available time **9 s**, **10 s** and **11 s**. Clear the file queue before each attempt.
+
+1. Set the available time to **9 seconds** and select **`sample_video_10s.mp4`** (00:00:10).
+2. Record whether **Insufficient balance** or **Ready to upload!** appears, the reported shortage and the availability of **Start upload!**.
+3. Clear the selection, set the available time to **10 seconds**, and select the same file; record the result.
+4. Repeat with **11 seconds** available; compare the upload states across the three balances.
+
+**Expected result (second-level accounting model):** **9 s** — **Insufficient balance**, **1 s** short; **10 s** and **11 s** — **Ready to upload!**, **Start upload!** available.
+
+### TC-BAL-004 — Validate the incomplete-balance workflow
+
+**Preconditions / test data:** Signed-in account with **0 seconds** available; **`sample_video_10s.mp4`** (00:00:10) selected and marked **Insufficient balance**; authorized test balance adjustment from **0 seconds** to **1 hour** available in the test environment.
+
+1. Check that the upload/processing action is unavailable.
+2. Locate the **Purchase time** controls.
+3. In an approved test environment, increase available time from **0 seconds to 1 hour (3600 seconds)** without making an unauthorized real payment.
+4. Recheck the same **10-second** video without changing the file.
+
+**Expected result:** The user cannot start processing while time is insufficient. After sufficient time becomes available, the file becomes eligible according to the approved balance-refresh behavior.
+
+## State-transition coverage
+
+| Current state | Event / condition | Expected next state |
+| --- | --- | --- |
+| No file selected | Select valid file, balance insufficient | **Insufficient balance** |
+| No file selected | Select valid file, balance sufficient | **Ready to upload!** |
+| Ready to upload | Click **Start upload!** | Upload/processing in progress |
+| Upload/processing | Processing succeeds | Completed |
+| Completed | Click **Download** or **Open in editor** | Result accessible |
+
+**Additional transitions to specify:** network failure, processing error, retry, removal from queue, navigation away and balance changes after selection.
+
+## Traceability
+
+| Requirement | Test cases |
+| --- | --- |
+| BAL-01, BAL-02 | TC-BAL-001, TC-BAL-003 |
+| BAL-03 | TC-BAL-002, TC-BAL-003, TC-BAL-004 |
+| BAL-04, BAL-05 | TC-BAL-002 |
+| Balance update / refresh behavior (0 s → 3600 s, selected 10 s file) | TC-BAL-004 |
+
+[← Test design overview](test-design-workbook.md) · [← Portfolio](../README.md)
 

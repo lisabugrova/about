@@ -2,7 +2,7 @@
 
 **Reference test design — not an execution report.** Record actual results against a dated build.
 
-[Profile](../README.md) · [Product coverage](product-coverage.md) · [Regression and release](regression-and-release.md)
+[Profile](../README.md) · [Product coverage](product-coverage.md) · [Regression and release](../portfolio/regression-and-release.md)
 
 ## Preparation
 

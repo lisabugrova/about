@@ -1,37 +1,37 @@
 # Elizaveta Bugrova
 
-**Manual QA Engineer**  
+**Manual QA Engineer · Web applications**  
 Tbilisi, Georgia · [Telegram](https://t.me/lizavetamirr) · [GitHub portfolio](https://github.com/lisabugrova/about) · [Русский](ru/CV.md)
 
-QA engineer with commercial experience since 2024. Functional and regression testing of web applications, release verification, test documentation and knowledge transfer.
+QA engineer with commercial experience since 2024. Functional and regression testing, release verification, test documentation and knowledge transfer.
 
-## Project experience
+## Professional experience
 
-### Audiodoc Studio — Manual QA
+### Manual web QA
 
-A web application for audio/video transcription and editing.
+- Analyze requirements and user journeys to define functional, negative and boundary checks.
+- Select regression checks for affected functionality, retest changes and document results.
+- Prepare test cases, checklists and defect reports; communicate blockers, coverage gaps and remaining release risks.
+- Organize test materials and product knowledge to help another QA engineer take over recurring checks.
 
-- Design positive, negative and boundary checks for file uploads and processing-time balance.
-- Cover file selection, drag-and-drop, queue limits, file size, duration and readiness to process.
-- Prepare test files and account states that isolate each rule. For example, give the account enough time when testing the maximum file count.
-- Record expected and actual behavior, identify untested paths and distinguish correct validation messages from defects.
-- Link requirements to test cases and choose regression checks for the affected features.
-- Organize test cases, checklists and reports for reuse and knowledge transfer.
+### Selected project: Audiodoc Studio
 
-[Project case study](portfolio/audiodoc-studio-case-study.md) · [Upload samples](portfolio/audiodoc-studio-file-upload.md) · [Balance samples](portfolio/audiodoc-studio-balance-validation.md) · [Execution record](portfolio/test-execution-report.md)
+Manual QA for a web application that transcribes audio and video and lets users edit the text while listening to the recording.
+
+My selected work samples show:
+
+- **Test analysis and design:** upload and processing-balance checks with defined test data, expected results and links to requirements.
+- **Business-rule coverage:** decision tables and state transitions for file eligibility, insufficient balance, processing and access to results.
+- **Regression and reporting:** checks selected by change impact, a release-summary template and recorded examples of upload validation and processing.
+
+[Project case study](portfolio/audiodoc-studio-case-study.md) · [Work samples](portfolio/test-design-workbook.md)
 
 ## Skills
 
-- **Test design:** equivalence partitioning, boundary values, decision tables and state transitions.
-- **Regression:** change-impact analysis, risk-based selection and fix verification.
-- **Reporting:** reproduction steps, expected/actual results, supporting evidence, blockers and coverage gaps.
-- **Release checks:** summarize tested behavior, unresolved defects and remaining risk.
-- **Handover:** explain product rules, share test materials and review another tester's execution.
+**Testing:** manual web testing, functional testing, regression testing, fix verification and release verification.
 
-## Portfolio
+**Test design:** equivalence partitioning, boundary value analysis, decision tables, state transitions and risk-based selection.
 
-The portfolio includes upload/balance work samples, two recorded test scenarios and a collaboratively prepared reference suite for the wider product. [Authorship and scope](portfolio/test-design-workbook.md#about-these-materials).
+**Documentation and collaboration:** test cases, checklists, defect reports, test-status reporting and QA handover.
 
-I am looking for a manual QA role in a product team.
-
-[Profile](README.md)
+[English profile](README.md) · [Russian CV](ru/CV.md)
