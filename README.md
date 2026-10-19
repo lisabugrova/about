@@ -1,19 +1,20 @@
 # Elizaveta Bugrova
 
-**Manual QA Engineer · Web applications**  
-Tbilisi, Georgia · [Telegram](https://t.me/lizavetamirr) · [GitHub](https://github.com/lisabugrova) · [Русский](ru/README.md)
+[Русский](ru/README.md) · **English** · [Telegram](https://t.me/lizavetamirr)
 
-I am a QA engineer with commercial experience since 2024. My work includes functional and regression testing, release verification, test documentation and knowledge transfer.
+**Manual QA Engineer · Tbilisi, Georgia**
 
-I analyze product requirements, turn them into test cases, check changes and communicate defects, coverage gaps and release risks. I also organize test materials so another tester can take over recurring checks.
+I have commercial QA experience since 2024. I test web applications, prepare test cases and defect reports, select regression checks and report release risks. I also organize test documentation and help another tester take over recurring checks.
 
-**[Read my CV](CV.md)**
+**Looking for:** a manual QA role in a product team, including international teams.
 
-## Selected project: Audiodoc Studio
+## Work samples
 
-Audiodoc Studio is a web application for transcribing audio and video and editing the resulting text. My portfolio includes selected examples of upload and processing-balance test design, regression selection and test reporting.
+These examples use Audiodoc Studio, a web application for transcribing audio and video.
 
-- **[Audiodoc case study](portfolio/audiodoc-studio-case-study.md)** — the testing problem, design choices and recorded results.
-- **[Selected work samples](portfolio/test-design-workbook.md)** — test cases, reports and QA process documents.
-
-I am interested in manual QA roles in product teams, including international teams.
+| Sample | Contents |
+| --- | --- |
+| [Test cases](portfolio/audiodoc-studio-file-upload.md) | Upload and balance checks: test data, expected results and the reasoning behind the choices. |
+| [Test results](portfolio/test-execution-report.md) | Two selected execution records: expected versus actual behavior, status and follow-up checks. |
+| [Bug report](portfolio/bug-report.md) | A filled, hypothetical example: reproduction steps, expected and actual behavior, and impact. |
+| [Regression and QA handover](portfolio/regression-and-release.md) | How to choose checks after a change and transfer recurring work to another tester. |

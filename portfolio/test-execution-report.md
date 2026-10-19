@@ -1,26 +1,24 @@
-# Audiodoc Studio — selected test results
+# Elizaveta Bugrova
 
-[Case study](audiodoc-studio-case-study.md) · [Русский](../ru/portfolio/test-execution-report.md)
+[Русский](../ru/portfolio/test-execution-report.md) · **English** · [Telegram](https://t.me/lizavetamirr) · [Résumé](../README.md)
 
-These two scenarios are selected records from the portfolio. They show how expected behavior and actual results were documented for upload validation and processing.
+## Test results
 
-| Case | Conditions | Recorded result | Evidence recorded |
+**Selected records from the existing portfolio.** Statuses below are retained from that report.
+
+| Scenario | Expected | Recorded behavior | Status |
 | --- | --- | --- | --- |
-| [TC-BAL-001](audiodoc-studio-balance-validation.md#tc-bal-001--insufficient-balance-prevents-upload) | 0 s available; 10 s video | File selected; insufficient balance; 10-second shortage; normal processing action absent. Recorded as passed. | UI observation described |
-| [TC-BAL-002](audiodoc-studio-balance-validation.md#tc-bal-002--process-a-video-with-sufficient-balance) | 3600 s available; 26:16 video | Ready state and start action; processing, leave-page warning, download and editor access reported. Recorded as passed. | Readiness described from a screenshot; completion reported in the test record |
+| TC-BAL-001 · 0 seconds available; 10-second video | Selection allowed; insufficient-balance message; processing blocked. | File selected; 10-second shortage shown; normal start action absent. | Passed — UI observation described. |
+| TC-BAL-002 · 3600 seconds available; video 26:16 | Ready state; processing; download and editor access. | Readiness described from a screenshot. The tester reported successful processing, a leave-page warning and working result actions. | Passed — readiness described; completion tester-reported. |
 
-For the first scenario, the insufficient-balance message is the expected validation result.
+**Record details:** browser/OS, build and date were not included. Screenshots were described but are not attached.
 
-## Record details
+### Follow-up checks
 
-Browser/OS, build and execution date were not included. Account and dataset identifiers were redacted. Screenshots were described but are not attached. The report is retained with those limitations.
+These were listed as not yet executed.
 
-## Follow-up checks listed in the report
-
-- A 10-second video at 9/10/11-second balances.
-- Zero-balance validation through drag-and-drop.
-- Combined file duration and rounding.
-
-These follow-up checks were not recorded as executed. Further runs should include their own environment, date and evidence.
-
-[All work samples](test-design-workbook.md)
+| Check | Purpose |
+| --- | --- |
+| 10-second video with balances of 9, 10 and 11 seconds | Verify the eligibility boundary. |
+| Zero-balance selection through drag-and-drop | Check the alternate input path. |
+| Multiple files and duration rounding | Check the combined time requirement. |
