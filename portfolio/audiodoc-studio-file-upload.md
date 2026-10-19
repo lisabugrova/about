@@ -20,7 +20,7 @@
 
 - Use supported, non-sensitive media files. Confirm supported formats before execution.
 - Prepare **9, 10 and 11 files**, named `count_01.mp4` through `count_11.mp4`, each **10 seconds long and approximately 2 MB**, and set the available time to **1 hour (3600 s)**. The largest group requires 110 seconds of media time; this isolates the count limit from the balance gate.
-- Prepare size-boundary fixtures `size_1699999999B.mp4` (**1,699,999,999 bytes**), `size_1700000000B.mp4` (**1,700,000,000 bytes**) and `size_1700000001B.mp4` (**1,700,000,001 bytes**), each valid MP4 of **26 minutes 16 seconds**; set balance to **1 hour**. These numbers use **decimal MB** and must be replaced by the binary set listed below if the specification defines MiB.
+- Prepare three valid MP4 files sized **1,699,999,999**, **1,700,000,000** and **1,700,000,001 bytes** (using decimal MB). Video duration is not a parameter in this test; available processing time must cover each selected file.
 - Record the initial document count and reset the queue between independent scenarios.
 - For drag-and-drop checks, use a supported desktop browser and a local file.
 
@@ -40,7 +40,7 @@
 | File count | 0, 1, 9, 10, 11 | Empty input and 10-file limit |
 | File size (decimal-MB test set) | 1,699,999,999; 1,700,000,000; 1,700,000,001 bytes | At/around the 1700 MB boundary |
 
-**Test parameters:** 10- and 11-file selections; maximum **1700 MB** per file. Decimal-MB boundary values are listed above; for **1700 MiB** use **1,782,579,199 / 1,782,579,200 / 1,782,579,201 bytes**..
+**Unit convention:** this test uses a limit of **1700 MB = 1,700,000,000 bytes**. Verify the product's MB definition against requirements before execution.
 
 ## Test cases
 
@@ -85,13 +85,21 @@
 
 ### TC-UPL-005 — Validate the per-file size boundary
 
-**Preconditions / test data:** Available processing time **1 hour (3600 s)**; empty queue; valid **26:16** MP4 files of **1,699,999,999**, **1,700,000,000** and **1,700,000,001 bytes**. First confirm the limit means decimal **1700 MB**; if not, use the explicit MiB equivalents in the boundary table. Prepare usable files without corrupting their media container.
+**Preconditions:** signed-in user; empty upload queue; three valid, playable MP4 files of a supported type. Available processing time covers each file. Size limit for this test: **1,700,000,000 bytes**.
 
-1. Select **`size_1699999999B.mp4`**, size **1,699,999,999 bytes**.
-2. Clear the queue; select **`size_1700000000B.mp4`**, size **1,700,000,000 bytes**.
-3. Clear the queue; select **`size_1700000001B.mp4`**, size **1,700,000,001 bytes**.
+**Test data:**
 
-**Expected result:** Under a confirmed **decimal 1700 MB** limit, the first two sizes satisfy the size restriction; the **1,700,000,001-byte** file is over limit. Other validation rules (format and balance) must also be satisfied.
+| File | Size | Boundary |
+| --- | ---: | --- |
+| A | **1,699,999,999 bytes** | 1 byte below |
+| B | **1,700,000,000 bytes** | Exactly at the limit |
+| C | **1,700,000,001 bytes** | 1 byte above |
+
+1. Select file **A** and inspect the size-validation result.
+2. Clear the queue, select file **B**, and inspect validation.
+3. Clear the queue, select file **C**, and inspect validation.
+
+**Expected result:** files **A** and **B** satisfy the file-size restriction; file **C** is rejected for exceeding the limit. Other upload restrictions must not affect size validation.
 
 ### TC-UPL-006 — Clear the selected-file queue
 
